@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.title = "生成资金账户";
+}
+
+<link href="@Url.Content("~/Content/CreaterVR.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/jquery.validate.js")" rel="stylesheet" type="text/javascript" />
+
+@using (Html.BeginForm("GetQymc", "VirtualAccount", FormMethod.Post, new { @name = "f1", @id = "fm" }))
+{
+    <table width="400" border="0" class="con_table" style="margin:10px;">
+        <tr>
+
+            <th width="20%">
+                用户编号
+            </th>
+            <td width="80%" style="padding: 5px;">
+                <input type="text" name="username" class="con_input" value="@ViewData["Uid"] @ViewData["xnusid"]" id="ud" required />
+            </td>
+            @Html.Hidden("Uid", ViewData["Uid"])
+
+        </tr>
+        <tr>
+            <td colspan="2" style="padding: 5px;">
+                <input name="action" class="con_but" type="submit" value="查询公司名称" id="viewap" />
+            </td>
+        </tr>
+        <tr>
+            <th>公司名称</th>
+            <td style="padding: 5px;">
+                @*@Html.TextBox("qymc", ViewData["qymc"], new { @class = "con_input" })*@
+
+                <input name="qymc" value="@ViewData["qymc"] @ViewData["cmp"]" class="con_input" />
+            </td>
+        </tr>
+
+        <tr>
+            <td style="padding: 5px;">
+                <input name="action" class="con_but" type="submit" value="生成虚拟账户" />
+            </td>
+            <td style="color:#09F; font-weight:bold;">
+                @ViewData["xnzh"]
+            </td>
+            @Html.Hidden("vr", ViewData["xnzh"])
+            @Html.Hidden("nuid", ViewData["xnusid"])
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <input type="submit" name="action" class="con_but" value="保存" id="sbm" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                @ViewData["result"]
+            </td>
+        </tr>
+
+    </table>
+}
+
+<script>
+    $("#viewap").click(function () {
+        //alert(document.getElementById("ud").value.length);
+
+        var t = $("#fm").valid();//表单编号
+        //var ele1 = $("#fm").validate({ rules: { ud: { required: true } } })
+
+        //if (document.getElementById("ud").value.length == 0) {
+
+        //    alert("请输入用户编号");
+        //    return false;
+        //}
+    }
+    )
+</script>

@@ -1,0 +1,70 @@
+@{
+    var griden = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridViewEn";
+        settings.CallbackRouteValues = new { Controller = "VirtualAccount", Action = "FocusViewEn", YHBH = ViewData["aa"] };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "VirtualAccount", Action = "FocusViewEnAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "VirtualAccount", Action = "FocusViewEnUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "VirtualAccount", Action = "FocusViewEnDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+       
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = false;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+        settings.CommandColumn.ShowCancelButton = true;
+        settings.KeyFieldName = "ID";
+        settings.Width = Unit.Percentage(100);
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.Columns.Add(colum =>
+        {
+            colum.FieldName = "ID";
+            colum.Visible = false;
+        });
+        settings.Columns.Add(colum =>
+        {
+            colum.FieldName = "YHBH";
+            colum.Caption = "用户编号";
+        });
+        settings.Columns.Add(colum =>
+        {
+            colum.FieldName = "YGXM";
+            colum.Caption = "员工姓名";
+        });
+        settings.Columns.Add(colum =>
+        {
+            colum.FieldName = "ZW";
+            colum.Caption = "职务";
+        });
+        settings.Columns.Add(colum =>
+        {
+            colum.Caption = "联系方式";
+            colum.FieldName = "SJHM";
+        });
+        settings.Columns.Add(colum =>
+        {
+            colum.Caption = "是否启用";
+            colum.FieldName = "SFQY";
+            colum.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = colum.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.Items.Add("未启用", "0");
+            comboBoxProperties.Items.Add("启用", "1");
+        });
+        settings.Columns.Add(colum =>
+        {
+            colum.Caption = "备注";
+            colum.FieldName = "BZ";
+        });
+    });
+    if (ViewData["EditError"] != null)
+    {
+        griden.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@griden.Bind(Model).GetHtml()

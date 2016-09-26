@@ -1,0 +1,1 @@
+@Html.DevExpress().Scheduler(tcpjw3.oa.Controllers.SchedulerHelper.Settings).Bind(Model.Appointments, Model.Resources).GetHtml()

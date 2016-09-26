@@ -1,0 +1,44 @@
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridViewUserInRole";
+        settings.CallbackRouteValues = new { Controller = "Account", Action = "RoleGridViewUserInRole" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Account", Action = "RoleGridViewUserInRoleAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Account", Action = "RoleGridViewUserInRoleUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Account", Action = "RoleGridViewUserInRoleDelete" };
+
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = false;
+        settings.CommandColumn.ShowDeleteButton = false;
+        settings.CommandColumn.ShowEditButton = false;
+
+        settings.KeyFieldName = "UserId;RoleId";
+
+        settings.SettingsPager.Visible = false;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
+        settings.SettingsBehavior.AllowSort = false;
+        settings.SettingsBehavior.AllowSelectByRowClick = false;
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "UserName";
+            column.Caption = "用户名";
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "RoleName";
+            column.Caption = "角色名";
+        });
+    });
+
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

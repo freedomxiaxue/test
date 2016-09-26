@@ -1,0 +1,139 @@
+﻿@model tcpjw3.oa.Models.ClientUserCenter
+<html>
+<head>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+    $(function () {
+        GetProvince(); //加载省份
+        //省份变动，加载城市
+        $("#Province").change(function () {
+            GetCity();
+        });
+    });
+    function GetProvince() {
+        //        $("#Province").empty();
+        $.getJSON(
+            "/ShowUser/GetProvincelist",
+            function (data) {
+                $.each(data, function (i, item) {
+                    $("<option></option>").val(item["Value"]).text(item["Text"]).appendTo($("#Province"));
+                })
+            });
+        //            GetCity();
+    }
+    function GetCity() {
+        $("#City").empty();
+        $.getJSON(
+        "/ShowUser/GetCitylist",
+        { pid: $("#Province").val() },
+        function (data) {
+            $.each(data, function (i, item) {
+                $("<option></option>").val(item["Value"]).text(item["Text"]).appendTo($("#City"));
+
+            })
+        });
+    }
+    </script>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        <table class="detailtable" cellpadding="0" cellspacing="0">
+            <tr>
+                <td>省份：</td>
+                <td><select id="Province">
+                        <option>请选择</option>
+                    </select></td>
+                <td>城市：</td>
+                <td><select id="City">
+                    <option>请选择</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>企业名称：</td>
+                <td>@Html.EditorFor(model => model.FullName)</td>
+                <td>企业简称：</td>
+                <td>@Html.EditorFor(model => model.Name)</td>
+            </tr>
+            <tr>
+                <td>手机号码：</td>
+                <td>@Html.EditorFor(model => model.Phone)</td>
+                <td>座机号码：</td>
+                <td>@Html.EditorFor(model => model.Telephone)</td>
+            </tr>
+            <tr>
+                <td>负责人：</td>
+                <td>@Html.EditorFor(model => model.NameOfPIC)</td>
+                <td>持票企业等级：</td>
+                <td>@Html.DropDownListFor(model => model.ALTakerLevel, ViewData["ALTakerLevellist"] as List<SelectListItem>, "请选择")</td>
+            </tr>
+            <tr>
+                <td>贴现机构等级：</td>
+                <td>@Html.DropDownListFor(model => model.ALBearerLevel, ViewData["ALBearerLevellist"] as List<SelectListItem>, "请选择")</td>
+                <td>省份：</td>
+                <td>@Html.DropDownListFor(model => model.ProvinceID, ViewData["UGetAllProvince"] as List<SelectListItem>, "请选择")</td>
+            </tr>
+            <tr>
+                <td>城市：</td>
+                <td>@Html.DropDownListFor(model => model.CityID, ViewData["UGetCitysByProvinceName"] as List<SelectListItem>, "请选择")</td>
+                <td>是否中介：</td>
+                <td>@Html.DropDownListFor(model => model.IsAgency, ViewData["IsAgencylist"] as List<SelectListItem>)</td>
+            </tr>
+            <tr>
+                <td>认定的贴现机构：</td>
+                <td>@Html.DropDownListFor(model => model.Identor, ViewData["Identorlist"] as List<SelectListItem>)</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="编辑" /></td>
+            </tr>
+
+
+            @*<tr>
+                    <td>企业名称：</td>
+                    <td><input type="text" name="ufullname" value="" /></td>
+                    <td>企业简称：</td>
+                    <td><input type="text" name="uname" value="" /></td>
+                </tr>
+                <tr>
+                    <td>手机号码：</td>
+                    <td><input type="text" name="uphone" value="" /></td>
+                    <td>座机号码：</td>
+                    <td><input type="text" name="utelephone" value="" /></td>
+                </tr>
+                <tr>
+                    <td>负责人：</td>
+                    <td><input type="text" name="unameofpic" value="" /></td>
+                    <td><label for="uALTakerLevel">持票企业等级：</label></td>
+                    <td><select name="uALTakerLevel" id="uALTakerLevel"></select></td>
+                </tr>
+                <tr>
+                    <td><label for="uALBearerLevel">贴现机构等级：</label></td>
+                    <td><select name="uALBearerLevel" id="uALBearerLevel"></select></td>
+                    <td><label for="uProvinceID">省份：</label></td>
+                    <td><select name="uProvinceID" id="uProvinceID"></select></td>
+                </tr>
+                <tr>
+                    <td><label for="uCityID">城市：</label></td>
+                    <td><select name="uCityID" id="uCityID"></select></td>
+                    <td><label for="uIsAgency">是否中介：</label></td>
+                    <td><select name="uIsAgency" id="uIsAgency"></select></td>
+                </tr>
+                <tr>
+                    <td><label for="uIdentor">认定的贴现机构：</label></td>
+                    <td><select name="uIdentor" id="uIdentor"></select></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="编辑" /></td>
+                </tr>*@
+
+        </table>
+
+    }
+</body>
+</html>
+

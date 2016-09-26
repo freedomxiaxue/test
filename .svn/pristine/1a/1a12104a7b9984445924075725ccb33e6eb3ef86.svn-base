@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>管理员登修改密码</title>
+		<link type="text/css" rel="stylesheet" href="oa_login.css">
+	</head>
+	<body class="login_bg">
+		<div class="login_top"></div>
+		<div class="mp_box">
+			<h2>修改密码</h2>
+            <table width="500" border="0" class="mp_table">
+              <tr>
+                <th width="20%">原密码</th>
+                <td width="80%"><input class="mp_input" type="text" value="请输入原密码" /></td>
+              </tr>
+                <tr>
+                <th>新密码:</th>
+                <td><input type="text" class="mp_input" value="请输入新密码" /></td>
+              </tr>
+              <tr>
+                <th>确认密码:</th>
+                <td><input class="mp_input" type="text" value="请重新输入新密码" /></td>
+              </tr>
+              <tr>
+              <th></th>
+                <td><input type="button" class="mp_but" value="确认修改" /></td>
+              </tr>
+        </table>
+		</div>
+	</body>
+</html>

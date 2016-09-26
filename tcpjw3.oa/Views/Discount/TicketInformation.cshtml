@@ -1,0 +1,107 @@
+﻿@model tcpjw3.oa.Models.ViewModel.TicketInfo
+
+
+@{
+    var disBidgrid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "DiscountBidingGridView" + ViewData["key"];
+        settings.CallbackRouteValues = new { Controller = "Discount", Action = "TicketInformation", key = ViewData["key"] };
+        settings.Width = Unit.Percentage(100);
+        settings.KeyFieldName = "BidUserID";
+
+        settings.Columns.Add("Name", "机构简称");
+        settings.Columns.Add("Phone", "手机号码");
+        settings.Columns.Add("ProvinceID", "省份");
+        settings.Columns.Add("CityID", "城市");
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "BidRate";
+            column.Caption = "年利率报价";
+            column.ColumnType = MVCxGridViewColumnType.SpinEdit;
+            SpinEditProperties p = column.PropertiesEdit as SpinEditProperties;
+            //p.DisplayFormatString = "N2";
+            p.DisplayFormatString = "{0:N2}‰";
+            //p.DecimalPlaces = 2;
+        });
+
+        settings.Columns.Add("BidTime", "竞标时间");
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "BidResult";
+            column.Caption = "竞标结果";
+
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.Items.Add("√", "1");
+            comboBoxProperties.Items.Add("×", "2");
+            comboBoxProperties.ValueType = typeof(int);
+        });
+
+        //settings.Columns.Add(column =>
+        //{
+        //    column.FieldName = "UnitPrice";
+        //    column.ColumnType = MVCxGridViewColumnType.SpinEdit;
+        //    SpinEditProperties p = column.PropertiesEdit as SpinEditProperties;
+        //    p.DisplayFormatInEditMode = true;
+        //    p.DisplayFormatString = "c";
+        //    p.DecimalPlaces = 2;
+
+        //});
+
+
+    });
+
+}
+
+<table class="detailtable" border="1" cellpadding="0" cellspacing="0">
+    <tr>
+        <td>承兑行名称：</td>
+        <td>
+            @Html.DisplayFor(model => model.ticketDiscount.BankName)
+        </td>
+        <td>票面金额：</td>
+        <td>
+            @Html.DisplayFor(model => model.ticketDiscount.TicketPrice )
+        </td>
+    </tr>
+    <tr>
+        <td>汇票到期日：</td>
+        <td>
+            @Html.DisplayFor(model => model.ticketDiscount.TicketEndTime )
+        </td>
+        <td>发布时间</td>
+        <td>
+            @Html.DisplayFor(model => model.ticketDiscount.PublishTime )
+        </td>
+    </tr>
+    <tr>
+        <td>汇票正面：</td>
+        <td>
+        <img src= @Model.ticketDiscount.TicketFaceImg />
+        </td>
+        <td>汇票背面：</td>
+        <td>
+        <img src=@Html.DisplayFor(model => model.ticketDiscount.TicketBackImg ) />
+        </td>
+    </tr>
+    <tr>
+        <td>已推送</td>
+        <td colspan="3">
+            已经推送 @Html.DisplayFor(model => model.TicketPushCount )
+            家机构
+        </td>
+    </tr>
+    <tr >
+        <td>报价信息</td>
+        <td colspan="3" class="detaildefault">
+            共 @Html.DisplayFor(model => model.QuoteCount )
+            家机构报价
+
+
+
+            @disBidgrid.Bind(Model.viewDisBidList).GetHtml()
+
+
+        </td>
+    </tr>
+</table>

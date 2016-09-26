@@ -1,0 +1,21 @@
+﻿@Html.DevExpress().Splitter(settings =>
+{
+    settings.Name = "Splitter";
+    settings.Orientation = Orientation.Vertical;
+    settings.FullscreenMode = true;
+    //settings.Height = 800;
+    settings.Height = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.AllowResize = true;
+    settings.Panes.Add(pane =>
+    {
+
+        pane.Name = "DataList";
+        pane.SetContent(() =>
+        {
+            Html.RenderAction("TreeListPartial");
+        });
+    });
+    settings.ClientSideEvents.PaneResized = "function(s, e){ TreeList.SetHeight(s.GetPaneByName('DataList').GetClientHeight()); }";
+}).GetHtml()
+

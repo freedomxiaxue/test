@@ -1,0 +1,596 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TCPJW3ModelStoreContainer" CdmEntityContainer="TCPJW3Entities">
+    <EntitySetMapping Name="AgentUser">
+      <EntityTypeMapping TypeName="TCPJW3Model.AgentUser">
+        <MappingFragment StoreEntitySet="AgentUser">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Picture1" ColumnName="Picture1" />
+          <ScalarProperty Name="Picture2" ColumnName="Picture2" />
+          <ScalarProperty Name="Picture3" ColumnName="Picture3" />
+          <ScalarProperty Name="Picture4" ColumnName="Picture4" />
+          <ScalarProperty Name="Picture5" ColumnName="Picture5" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="LastLoginTime" ColumnName="LastLoginTime" />
+          <ScalarProperty Name="LastLoginIP" ColumnName="LastLoginIP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BAT_CapitalDealInfo">
+      <EntityTypeMapping TypeName="TCPJW3Model.BAT_CapitalDealInfo">
+        <MappingFragment StoreEntitySet="BAT_CapitalDealInfo">
+          <ScalarProperty Name="YHBH" ColumnName="YHBH" />
+          <ScalarProperty Name="JYCGS" ColumnName="JYCGS" />
+          <ScalarProperty Name="JYSBS" ColumnName="JYSBS" />
+          <ScalarProperty Name="PJJYHS" ColumnName="PJJYHS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BAT_Captcha">
+      <EntityTypeMapping TypeName="TCPJW3Model.BAT_Captcha">
+        <MappingFragment StoreEntitySet="BAT_Captcha">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SJH" ColumnName="SJH" />
+          <ScalarProperty Name="YZM" ColumnName="YZM" />
+          <ScalarProperty Name="EFET" ColumnName="EFET" />
+          <ScalarProperty Name="EXET" ColumnName="EXET" />
+          <ScalarProperty Name="CZZT" ColumnName="CZZT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BAT_CiticForceTransfer">
+      <EntityTypeMapping TypeName="TCPJW3Model.BAT_CiticForceTransfer">
+        <MappingFragment StoreEntitySet="BAT_CiticForceTransfer">
+          <ScalarProperty Name="Ft_id" ColumnName="Ft_id" />
+          <ScalarProperty Name="Ft_clientid" ColumnName="Ft_clientid" />
+          <ScalarProperty Name="Ft_accountno" ColumnName="Ft_accountno" />
+          <ScalarProperty Name="Ft_payaccno" ColumnName="Ft_payaccno" />
+          <ScalarProperty Name="Ft_trantype" ColumnName="Ft_trantype" />
+          <ScalarProperty Name="Ft_recvaccno" ColumnName="Ft_recvaccno" />
+          <ScalarProperty Name="Ft_recvaccnm" ColumnName="Ft_recvaccnm" />
+          <ScalarProperty Name="Ft_tranamt" ColumnName="Ft_tranamt" />
+          <ScalarProperty Name="Ft_freezeno" ColumnName="Ft_freezeno" />
+          <ScalarProperty Name="Ft_memo" ColumnName="Ft_memo" />
+          <ScalarProperty Name="Ft_tranflag" ColumnName="Ft_tranflag" />
+          <ScalarProperty Name="Ft_recordtime" ColumnName="Ft_recordtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BAT_CITICOrderTransaction">
+      <EntityTypeMapping TypeName="TCPJW3Model.BAT_CITICOrderTransaction">
+        <MappingFragment StoreEntitySet="BAT_CITICOrderTransaction">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="Bizcode" ColumnName="Bizcode" />
+          <ScalarProperty Name="Mctno" ColumnName="Mctno" />
+          <ScalarProperty Name="Mctjnlno" ColumnName="Mctjnlno" />
+          <ScalarProperty Name="Lamagno" ColumnName="Lamagno" />
+          <ScalarProperty Name="Orderno" ColumnName="Orderno" />
+          <ScalarProperty Name="Bsnno" ColumnName="Bsnno" />
+          <ScalarProperty Name="Payeraccno" ColumnName="Payeraccno" />
+          <ScalarProperty Name="Payeeaccno" ColumnName="Payeeaccno" />
+          <ScalarProperty Name="Orderamt" ColumnName="Orderamt" />
+          <ScalarProperty Name="Tranamt" ColumnName="Tranamt" />
+          <ScalarProperty Name="Loanamt" ColumnName="Loanamt" />
+          <ScalarProperty Name="Crycode" ColumnName="Crycode" />
+          <ScalarProperty Name="Resume" ColumnName="Resume" />
+          <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+          <ScalarProperty Name="Ordertime" ColumnName="Ordertime" />
+          <ScalarProperty Name="Isloan" ColumnName="Isloan" />
+          <ScalarProperty Name="Isautopayback" ColumnName="Isautopayback" />
+          <ScalarProperty Name="Stfreezeno" ColumnName="Stfreezeno" />
+          <ScalarProperty Name="Ctrtno" ColumnName="Ctrtno" />
+          <ScalarProperty Name="Dlvorderno" ColumnName="Dlvorderno" />
+          <ScalarProperty Name="Dlvodrtime" ColumnName="Dlvodrtime" />
+          <ScalarProperty Name="Dlvctrtno" ColumnName="Dlvctrtno" />
+          <ScalarProperty Name="Dlvername" ColumnName="Dlvername" />
+          <ScalarProperty Name="Dlvfee" ColumnName="Dlvfee" />
+          <ScalarProperty Name="Stockno" ColumnName="Stockno" />
+          <ScalarProperty Name="Startdate" ColumnName="Startdate" />
+          <ScalarProperty Name="Enddate" ColumnName="Enddate" />
+          <ScalarProperty Name="Totalamt" ColumnName="Totalamt" />
+          <ScalarProperty Name="Warehousecode" ColumnName="Warehousecode" />
+          <ScalarProperty Name="Warehousenm" ColumnName="Warehousenm" />
+          <ScalarProperty Name="Productcode" ColumnName="Productcode" />
+          <ScalarProperty Name="Productnm" ColumnName="Productnm" />
+          <ScalarProperty Name="Unit" ColumnName="Unit" />
+          <ScalarProperty Name="Productnum" ColumnName="Productnum" />
+          <ScalarProperty Name="Dealunitprt" ColumnName="Dealunitprt" />
+          <ScalarProperty Name="Insflag" ColumnName="Insflag" />
+          <ScalarProperty Name="Whpos" ColumnName="Whpos" />
+          <ScalarProperty Name="R_stt" ColumnName="R_stt" />
+          <ScalarProperty Name="R_rstcode" ColumnName="R_rstcode" />
+          <ScalarProperty Name="Recordtime" ColumnName="Recordtime" />
+          <ScalarProperty Name="Updatetime" ColumnName="Updatetime" />
+          <ScalarProperty Name="Tranperiod" ColumnName="Tranperiod" />
+          <ScalarProperty Name="Freezeno" ColumnName="Freezeno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BAT_CiticPlatformOfGold">
+      <EntityTypeMapping TypeName="TCPJW3Model.BAT_CiticPlatformOfGold">
+        <MappingFragment StoreEntitySet="BAT_CiticPlatformOfGold">
+          <ScalarProperty Name="Pf_id" ColumnName="Pf_id" />
+          <ScalarProperty Name="Pf_clientid" ColumnName="Pf_clientid" />
+          <ScalarProperty Name="Pf_accountno" ColumnName="Pf_accountno" />
+          <ScalarProperty Name="Pf_recvaccno" ColumnName="Pf_recvaccno" />
+          <ScalarProperty Name="Pf_recvaccnm" ColumnName="Pf_recvaccnm" />
+          <ScalarProperty Name="Pf_tranamt" ColumnName="Pf_tranamt" />
+          <ScalarProperty Name="Pf_samebank" ColumnName="Pf_samebank" />
+          <ScalarProperty Name="Pf_recvtgfi" ColumnName="Pf_recvtgfi" />
+          <ScalarProperty Name="Pf_recvbanknm" ColumnName="Pf_recvbanknm" />
+          <ScalarProperty Name="Pf_memo" ColumnName="Pf_memo" />
+          <ScalarProperty Name="Pf_preflg" ColumnName="Pf_preflg" />
+          <ScalarProperty Name="Pf_predate" ColumnName="Pf_predate" />
+          <ScalarProperty Name="Pf_pretime" ColumnName="Pf_pretime" />
+          <ScalarProperty Name="Pf_ticketid" ColumnName="Pf_ticketid" />
+          <ScalarProperty Name="Pf_fkaccount" ColumnName="Pf_fkaccount" />
+          <ScalarProperty Name="pf_skaccount" ColumnName="pf_skaccount" />
+          <ScalarProperty Name="Pf_recordtime" ColumnName="Pf_recordtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BAT_EnterpriseOperator">
+      <EntityTypeMapping TypeName="TCPJW3Model.BAT_EnterpriseOperator">
+        <MappingFragment StoreEntitySet="BAT_EnterpriseOperator">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="YHBH" ColumnName="YHBH" />
+          <ScalarProperty Name="YGXM" ColumnName="YGXM" />
+          <ScalarProperty Name="ZW" ColumnName="ZW" />
+          <ScalarProperty Name="SJHM" ColumnName="SJHM" />
+          <ScalarProperty Name="SFQY" ColumnName="SFQY" />
+          <ScalarProperty Name="BZ" ColumnName="BZ" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BAT_GoldAccount">
+      <EntityTypeMapping TypeName="TCPJW3Model.BAT_GoldAccount">
+        <MappingFragment StoreEntitySet="BAT_GoldAccount">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Userid" ColumnName="Userid" />
+          <ScalarProperty Name="CjrecvAccNo" ColumnName="CjrecvAccNo" />
+          <ScalarProperty Name="RecvAccNm" ColumnName="RecvAccNm" />
+          <ScalarProperty Name="CjsameBank" ColumnName="CjsameBank" />
+          <ScalarProperty Name="CjrecvTgfi" ColumnName="CjrecvTgfi" />
+          <ScalarProperty Name="CjrecvBankNm" ColumnName="CjrecvBankNm" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BAT_ParValueInfo">
+      <EntityTypeMapping TypeName="TCPJW3Model.BAT_ParValueInfo">
+        <MappingFragment StoreEntitySet="BAT_ParValueInfo">
+          <ScalarProperty Name="JYQQBH" ColumnName="JYQQBH" />
+          <ScalarProperty Name="Pvid" ColumnName="Pvid" />
+          <ScalarProperty Name="PMJE" ColumnName="PMJE" />
+          <ScalarProperty Name="DQR" ColumnName="DQR" />
+          <ScalarProperty Name="CDHQC" ColumnName="CDHQC" />
+          <ScalarProperty Name="PMJT" ColumnName="PMJT" />
+          <ScalarProperty Name="CJYLL" ColumnName="CJYLL" />
+          <ScalarProperty Name="CJMSWJG" ColumnName="CJMSWJG" />
+          <ScalarProperty Name="CJJG" ColumnName="CJJG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BAT_TradingData">
+      <EntityTypeMapping TypeName="TCPJW3Model.BAT_TradingData">
+        <MappingFragment StoreEntitySet="BAT_TradingData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CountM" ColumnName="CountM" />
+          <ScalarProperty Name="YesDayCountM" ColumnName="YesDayCountM" />
+          <ScalarProperty Name="AvergeTime" ColumnName="AvergeTime" />
+          <ScalarProperty Name="OperTime" ColumnName="OperTime" />
+          <ScalarProperty Name="backup1" ColumnName="backup1" />
+          <ScalarProperty Name="backup2" ColumnName="backup2" />
+          <ScalarProperty Name="backup3" ColumnName="backup3" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BAT_TradingRecords">
+      <EntityTypeMapping TypeName="TCPJW3Model.BAT_TradingRecords">
+        <MappingFragment StoreEntitySet="BAT_TradingRecords">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="JYQQBH" ColumnName="JYQQBH" />
+          <ScalarProperty Name="ZXZT" ColumnName="ZXZT" />
+          <ScalarProperty Name="CZSJ" ColumnName="CZSJ" />
+          <ScalarProperty Name="CZR" ColumnName="CZR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BAT_TradingRequest">
+      <EntityTypeMapping TypeName="TCPJW3Model.BAT_TradingRequest">
+        <MappingFragment StoreEntitySet="BAT_TradingRequest">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="YWBH" ColumnName="YWBH" />
+          <ScalarProperty Name="FQR" ColumnName="FQR" />
+          <ScalarProperty Name="CPRBH" ColumnName="CPRBH" />
+          <ScalarProperty Name="CPRDH" ColumnName="CPRDH" />
+          <ScalarProperty Name="CPRMC" ColumnName="CPRMC" />
+          <ScalarProperty Name="SPRBH" ColumnName="SPRBH" />
+          <ScalarProperty Name="SPRDH" ColumnName="SPRDH" />
+          <ScalarProperty Name="SPRMC" ColumnName="SPRMC" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="FQSJ" ColumnName="FQSJ" />
+          <ScalarProperty Name="JYSHZT" ColumnName="JYSHZT" />
+          <ScalarProperty Name="JYSHSJ" ColumnName="JYSHSJ" />
+          <ScalarProperty Name="JYSHR" ColumnName="JYSHR" />
+          <ScalarProperty Name="JYZT" ColumnName="JYZT" />
+          <ScalarProperty Name="BZ" ColumnName="BZ" />
+          <ScalarProperty Name="ZXLSBH" ColumnName="ZXLSBH" />
+          <ScalarProperty Name="BSBH" ColumnName="BSBH" />
+          <ScalarProperty Name="ZXZT" ColumnName="ZXZT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BAT_VirtualAccount">
+      <EntityTypeMapping TypeName="TCPJW3Model.BAT_VirtualAccount">
+        <MappingFragment StoreEntitySet="BAT_VirtualAccount">
+          <ScalarProperty Name="YHBH" ColumnName="YHBH" />
+          <ScalarProperty Name="QYMC" ColumnName="QYMC" />
+          <ScalarProperty Name="LXR" ColumnName="LXR" />
+          <ScalarProperty Name="LXRDH" ColumnName="LXRDH" />
+          <ScalarProperty Name="XNZH" ColumnName="XNZH" />
+          <ScalarProperty Name="SJR" ColumnName="SJR" />
+          <ScalarProperty Name="SJRDH" ColumnName="SJRDH" />
+          <ScalarProperty Name="YJDZ" ColumnName="YJDZ" />
+          <ScalarProperty Name="JS" ColumnName="JS" />
+          <ScalarProperty Name="SQSJ" ColumnName="SQSJ" />
+          <ScalarProperty Name="SHJD" ColumnName="SHJD" />
+          <ScalarProperty Name="SHSJ" ColumnName="SHSJ" />
+          <ScalarProperty Name="SHR" ColumnName="SHR" />
+          <ScalarProperty Name="BZ" ColumnName="BZ" />
+          <ScalarProperty Name="KDGS" ColumnName="KDGS" />
+          <ScalarProperty Name="KDDH" ColumnName="KDDH" />
+          <ScalarProperty Name="BankUp1" ColumnName="BankUp1" />
+          <ScalarProperty Name="BankUp2" ColumnName="BankUp2" />
+          <ScalarProperty Name="BankUp3" ColumnName="BankUp3" />
+          <ScalarProperty Name="BankUp4" ColumnName="BankUp4" />
+          <ScalarProperty Name="BankUp5" ColumnName="BankUp5" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClientUser">
+      <EntityTypeMapping TypeName="TCPJW3Model.ClientUser">
+        <MappingFragment StoreEntitySet="ClientUser">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+          <ScalarProperty Name="RegisterType" ColumnName="RegisterType" />
+          <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="NameOfPIC" ColumnName="NameOfPIC" />
+          <ScalarProperty Name="PositionOfPIC" ColumnName="PositionOfPIC" />
+          <ScalarProperty Name="QQOfPIC" ColumnName="QQOfPIC" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="ALTakerLevel" ColumnName="ALTakerLevel" />
+          <ScalarProperty Name="ALBearerLevel" ColumnName="ALBearerLevel" />
+          <ScalarProperty Name="ALAdvantage" ColumnName="ALAdvantage" />
+          <ScalarProperty Name="ALNote" ColumnName="ALNote" />
+          <ScalarProperty Name="Identor" ColumnName="Identor" />
+          <ScalarProperty Name="PartyFunding" ColumnName="PartyFunding" />
+          <ScalarProperty Name="IsAgency" ColumnName="IsAgency" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DiscountBidding">
+      <EntityTypeMapping TypeName="TCPJW3Model.DiscountBidding">
+        <MappingFragment StoreEntitySet="DiscountBidding">
+          <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+          <ScalarProperty Name="BidUserID" ColumnName="BidUserID" />
+          <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+          <ScalarProperty Name="BidRate" ColumnName="BidRate" />
+          <ScalarProperty Name="BidTime" ColumnName="BidTime" />
+          <ScalarProperty Name="LastEditTime" ColumnName="LastEditTime" />
+          <ScalarProperty Name="BidResult" ColumnName="BidResult" />
+          <ScalarProperty Name="BidResultNote" ColumnName="BidResultNote" />
+          <ScalarProperty Name="BidRelateResult" ColumnName="BidRelateResult" />
+          <ScalarProperty Name="LoginMode" ColumnName="LoginMode" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DiscountSheme">
+      <EntityTypeMapping TypeName="TCPJW3Model.DiscountSheme">
+        <MappingFragment StoreEntitySet="DiscountSheme">
+          <ScalarProperty Name="D_ID" ColumnName="D_ID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="D_Phone" ColumnName="D_Phone" />
+          <ScalarProperty Name="D_Bill" ColumnName="D_Bill" />
+          <ScalarProperty Name="D_Time" ColumnName="D_Time" />
+          <ScalarProperty Name="ProvinceValue" ColumnName="ProvinceValue" />
+          <ScalarProperty Name="CityValue" ColumnName="CityValue" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ALNote" ColumnName="ALNote" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Enroll">
+      <EntityTypeMapping TypeName="TCPJW3Model.Enroll">
+        <MappingFragment StoreEntitySet="Enroll">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="JoinTime" ColumnName="JoinTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HolidayLibrary">
+      <EntityTypeMapping TypeName="TCPJW3Model.HolidayLibrary">
+        <MappingFragment StoreEntitySet="HolidayLibrary">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="HolidayName" ColumnName="HolidayName" />
+          <ScalarProperty Name="HolidayStart" ColumnName="HolidayStart" />
+          <ScalarProperty Name="HolidayEnd" ColumnName="HolidayEnd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Link">
+      <EntityTypeMapping TypeName="TCPJW3Model.Link">
+        <MappingFragment StoreEntitySet="Link">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LinkName" ColumnName="LinkName" />
+          <ScalarProperty Name="LinkUrl" ColumnName="LinkUrl" />
+          <ScalarProperty Name="LinkImg" ColumnName="LinkImg" />
+          <ScalarProperty Name="LinkClass" ColumnName="LinkClass" />
+          <ScalarProperty Name="Sort" ColumnName="Sort" />
+          <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="LinkState" ColumnName="LinkState" />
+          <ScalarProperty Name="IsNoFollow" ColumnName="IsNoFollow" />
+          <ScalarProperty Name="AddUserName" ColumnName="AddUserName" />
+          <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LinkClass">
+      <EntityTypeMapping TypeName="TCPJW3Model.LinkClass">
+        <MappingFragment StoreEntitySet="LinkClass">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+          <ScalarProperty Name="IsLock" ColumnName="IsLock" />
+          <ScalarProperty Name="Sort" ColumnName="Sort" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MachineRecords">
+      <EntityTypeMapping TypeName="TCPJW3Model.MachineRecords">
+        <MappingFragment StoreEntitySet="MachineRecords">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Mtype" ColumnName="Mtype" />
+          <ScalarProperty Name="Regtime" ColumnName="Regtime" />
+          <ScalarProperty Name="ModelName" ColumnName="ModelName" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Message">
+      <EntityTypeMapping TypeName="TCPJW3Model.Message">
+        <MappingFragment StoreEntitySet="Message">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SNID" ColumnName="SNID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="MsgTitle" ColumnName="MsgTitle" />
+          <ScalarProperty Name="MsgContent" ColumnName="MsgContent" />
+          <ScalarProperty Name="MsgState" ColumnName="MsgState" />
+          <ScalarProperty Name="MsgType" ColumnName="MsgType" />
+          <ScalarProperty Name="MsgTime" ColumnName="MsgTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewsList">
+      <EntityTypeMapping TypeName="TCPJW3Model.NewsList">
+        <MappingFragment StoreEntitySet="NewsList">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Nclassid" ColumnName="Nclassid" />
+          <ScalarProperty Name="Classname" ColumnName="Classname" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Imgtitleurl" ColumnName="Imgtitleurl" />
+          <ScalarProperty Name="Seo_title" ColumnName="Seo_title" />
+          <ScalarProperty Name="Seo_keywords" ColumnName="Seo_keywords" />
+          <ScalarProperty Name="Seo_desciption" ColumnName="Seo_desciption" />
+          <ScalarProperty Name="Fromnew" ColumnName="Fromnew" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Editor" ColumnName="Editor" />
+          <ScalarProperty Name="Edittime" ColumnName="Edittime" />
+          <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+          <ScalarProperty Name="Publishtime" ColumnName="Publishtime" />
+          <ScalarProperty Name="AuditState" ColumnName="AuditState" />
+          <ScalarProperty Name="Auditor" ColumnName="Auditor" />
+          <ScalarProperty Name="AuditTime" ColumnName="AuditTime" />
+          <ScalarProperty Name="Isslide" ColumnName="Isslide" />
+          <ScalarProperty Name="Slideurl" ColumnName="Slideurl" />
+          <ScalarProperty Name="Isrecommend" ColumnName="Isrecommend" />
+          <ScalarProperty Name="Istop" ColumnName="Istop" />
+          <ScalarProperty Name="Iscolor" ColumnName="Iscolor" />
+          <ScalarProperty Name="Spare1" ColumnName="Spare1" />
+          <ScalarProperty Name="Spare2" ColumnName="Spare2" />
+          <ScalarProperty Name="Spare3" ColumnName="Spare3" />
+          <ScalarProperty Name="Spare4" ColumnName="Spare4" />
+          <ScalarProperty Name="Spare5" ColumnName="Spare5" />
+          <ScalarProperty Name="NDescription" ColumnName="NDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuoteStatistic">
+      <EntityTypeMapping TypeName="TCPJW3Model.QuoteStatistic">
+        <MappingFragment StoreEntitySet="QuoteStatistic">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="GG" ColumnName="GG" />
+          <ScalarProperty Name="DS" ColumnName="DS" />
+          <ScalarProperty Name="XS" ColumnName="XS" />
+          <ScalarProperty Name="QT" ColumnName="QT" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysStatic">
+      <EntityTypeMapping TypeName="TCPJW3Model.SysStatic">
+        <MappingFragment StoreEntitySet="SysStatic">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="PID" ColumnName="PID" />
+          <ScalarProperty Name="Sort" ColumnName="Sort" />
+          <ScalarProperty Name="IsRoot" ColumnName="IsRoot" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TicketDiscount">
+      <EntityTypeMapping TypeName="TCPJW3Model.TicketDiscount">
+        <MappingFragment StoreEntitySet="TicketDiscount">
+          <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+          <ScalarProperty Name="TicketType" ColumnName="TicketType" />
+          <ScalarProperty Name="BankType" ColumnName="BankType" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="TicketCategory" ColumnName="TicketCategory" />
+          <ScalarProperty Name="TermType" ColumnName="TermType" />
+          <ScalarProperty Name="TicketPrice" ColumnName="TicketPrice" />
+          <ScalarProperty Name="TicketStartTime" ColumnName="TicketStartTime" />
+          <ScalarProperty Name="TicketEndTime" ColumnName="TicketEndTime" />
+          <ScalarProperty Name="TicketFaceImg" ColumnName="TicketFaceImg" />
+          <ScalarProperty Name="TicketBackImg" ColumnName="TicketBackImg" />
+          <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="TradeState" ColumnName="TradeState" />
+          <ScalarProperty Name="PublishTime" ColumnName="PublishTime" />
+          <ScalarProperty Name="LastEditTime" ColumnName="LastEditTime" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="PublishTunes" ColumnName="PublishTunes" />
+          <ScalarProperty Name="AuditorID" ColumnName="AuditorID" />
+          <ScalarProperty Name="AuditorName" ColumnName="AuditorName" />
+          <ScalarProperty Name="AuditState" ColumnName="AuditState" />
+          <ScalarProperty Name="AuditNote" ColumnName="AuditNote" />
+          <ScalarProperty Name="AuditTime" ColumnName="AuditTime" />
+          <ScalarProperty Name="Hits" ColumnName="Hits" />
+          <ScalarProperty Name="LoginMode" ColumnName="LoginMode" />
+          <ScalarProperty Name="UserNote" ColumnName="UserNote" />
+          <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+          <ScalarProperty Name="UploadChannel" ColumnName="UploadChannel" />
+          <ScalarProperty Name="JjzTime" ColumnName="JjzTime" />
+          <ScalarProperty Name="QryyTime" ColumnName="QryyTime" />
+          <ScalarProperty Name="ZfdjTime" ColumnName="ZfdjTime" />
+          <ScalarProperty Name="CprbsTime" ColumnName="CprbsTime" />
+          <ScalarProperty Name="QsjdTime" ColumnName="QsjdTime" />
+          <ScalarProperty Name="WcjyTime" ColumnName="WcjyTime" />
+          <ScalarProperty Name="ZzjyTime" ColumnName="ZzjyTime" />
+          <ScalarProperty Name="YykbTime" ColumnName="YykbTime" />
+          <ScalarProperty Name="BidId" ColumnName="BidId" />
+          <ScalarProperty Name="ToAccount" ColumnName="ToAccount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TicketHistory">
+      <EntityTypeMapping TypeName="TCPJW3Model.TicketHistory">
+        <MappingFragment StoreEntitySet="TicketHistory">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+          <ScalarProperty Name="CurrState" ColumnName="CurrState" />
+          <ScalarProperty Name="FrontState" ColumnName="FrontState" />
+          <ScalarProperty Name="ActionTime" ColumnName="ActionTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TicketImage">
+      <EntityTypeMapping TypeName="TCPJW3Model.TicketImage">
+        <MappingFragment StoreEntitySet="TicketImage">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+          <ScalarProperty Name="OriginImg" ColumnName="OriginImg" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="ThumbImg" ColumnName="ThumbImg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TicketPush">
+      <EntityTypeMapping TypeName="TCPJW3Model.TicketPush">
+        <MappingFragment StoreEntitySet="TicketPush">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="TicketPrice" ColumnName="TicketPrice" />
+          <ScalarProperty Name="TicketEndTime" ColumnName="TicketEndTime" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="TicketType" ColumnName="TicketType" />
+          <ScalarProperty Name="BankType" ColumnName="BankType" />
+          <ScalarProperty Name="TicketCategory" ColumnName="TicketCategory" />
+          <ScalarProperty Name="TermType" ColumnName="TermType" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="ToUserID" ColumnName="ToUserID" />
+          <ScalarProperty Name="PushTime" ColumnName="PushTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserCenter">
+      <EntityTypeMapping TypeName="TCPJW3Model.UserCenter">
+        <MappingFragment StoreEntitySet="UserCenter">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="RegisterTime" ColumnName="RegisterTime" />
+          <ScalarProperty Name="RegisterIP" ColumnName="RegisterIP" />
+          <ScalarProperty Name="LastLoginTime" ColumnName="LastLoginTime" />
+          <ScalarProperty Name="LastLoginIP" ColumnName="LastLoginIP" />
+          <ScalarProperty Name="LoginType" ColumnName="LoginType" />
+          <ScalarProperty Name="UserState" ColumnName="UserState" />
+          <ScalarProperty Name="Question1" ColumnName="Question1" />
+          <ScalarProperty Name="Question2" ColumnName="Question2" />
+          <ScalarProperty Name="Question3" ColumnName="Question3" />
+          <ScalarProperty Name="Answer1" ColumnName="Answer1" />
+          <ScalarProperty Name="Answer2" ColumnName="Answer2" />
+          <ScalarProperty Name="Answer3" ColumnName="Answer3" />
+          <ScalarProperty Name="Salt" ColumnName="Salt" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="LoginMode" ColumnName="LoginMode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserMap">
+      <EntityTypeMapping TypeName="TCPJW3Model.UserMap">
+        <MappingFragment StoreEntitySet="UserMap">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AgencyId" ColumnName="AgencyId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRegistCode">
+      <EntityTypeMapping TypeName="TCPJW3Model.UserRegistCode">
+        <MappingFragment StoreEntitySet="UserRegistCode">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="ExecTime" ColumnName="ExecTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="VerifyState" ColumnName="VerifyState" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

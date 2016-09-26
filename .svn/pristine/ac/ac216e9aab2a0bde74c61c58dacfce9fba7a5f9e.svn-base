@@ -1,0 +1,115 @@
+﻿@model tcpjw3.oa.Models.ViewModel.PersonInfo
+
+@{
+    Layout = null;
+}
+
+        <table class="detailtable" border="1" cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+                    用户编号：
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.ID)
+                </td>
+                <td>
+                    角色：
+                </td>
+
+                <td>
+                   
+                </td>
+            </tr>
+            <tr>
+                <td>
+                   账户余额：
+                </td>
+                
+                <td colspan="3">
+                    ¥0.00
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    头像：
+                </td>
+
+                <td colspan="3">
+                    <img src= @Html.DisplayFor(model => model.Avatar) />
+
+                </td>
+            </tr>
+            <tr> 
+            <td>
+                用户全称：
+            </td>
+    
+            <td>
+                @Html.DisplayFor(model => model.FullName )
+            </td>
+    
+            <td>
+                用户简称：
+            </td>
+    
+            <td>
+                @Html.DisplayFor(model => model.Name )
+            </td>
+    </tr>
+            <tr>
+                <td>
+                    联系人：
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.NameOfPIC)
+                </td>
+
+                <td>
+                    手机号：
+                </td>
+
+                <td>
+                  
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    所属区域：
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.CityProName)
+                </td>
+
+                <td>
+                    地址：
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.Address )
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    注册时间：
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.RegisterTime)
+                </td>
+
+                <td>
+                    上次登录时间：
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.LastLoginTime)
+                </td>
+            </tr>
+
+ </table>
+

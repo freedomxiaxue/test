@@ -1,0 +1,15 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <object id="AuthIE" name="AuthIE" width="0px" height="0px" codebase="@Url.Content("~/App_Data/SuperDog/DogAuth.CAB")"
+            classid="CLSID:05C384B0-F45D-46DB-9055-C72DC76176E3" style="visibility: hidden"></object>
+    <link href="@Url.Content("~/Content/oa_login.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-1.12.0.js")"></script>
+    <script src="@Url.Content("~/Scripts/dogrequire.js")"></script>
+</head>
+<body class="login_bg" onload="loadFunc();">
+    @RenderBody()
+</body>
+</html>

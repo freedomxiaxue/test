@@ -1,0 +1,19 @@
+@{
+    var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "CodeList";
+        settings.CallbackRouteValues = new { Controller = "ShowCode", Action = "CodeListPartial" };
+
+
+        settings.KeyFieldName = "ID";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.Columns.Add(column=> { column.FieldName = "PhoneNumber"; column.Caption = "手机号"; });
+        settings.Columns.Add(column => { column.FieldName = "Code"; column.Caption = "验证码"; });
+        settings.Columns.Add(column => { column.FieldName = "ExecTime"; column.Caption = "发出时间"; });
+    });
+}
+@grid.Bind(Model).GetHtml()

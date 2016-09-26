@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TCPJW3Model1StoreContainer" CdmEntityContainer="TCPJW3Entities1">
+    <EntitySetMapping Name="AgentUser">
+      <EntityTypeMapping TypeName="TCPJW3Model1.AgentUser">
+        <MappingFragment StoreEntitySet="AgentUser">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Picture1" ColumnName="Picture1" />
+          <ScalarProperty Name="Picture2" ColumnName="Picture2" />
+          <ScalarProperty Name="Picture3" ColumnName="Picture3" />
+          <ScalarProperty Name="Picture4" ColumnName="Picture4" />
+          <ScalarProperty Name="Picture5" ColumnName="Picture5" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="LastLoginTime" ColumnName="LastLoginTime" />
+          <ScalarProperty Name="LastLoginIP" ColumnName="LastLoginIP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BAT_CapitalDealInfo">
+      <EntityTypeMapping TypeName="TCPJW3Model1.BAT_CapitalDealInfo">
+        <MappingFragment StoreEntitySet="BAT_CapitalDealInfo">
+          <ScalarProperty Name="YHBH" ColumnName="YHBH" />
+          <ScalarProperty Name="JYCGS" ColumnName="JYCGS" />
+          <ScalarProperty Name="JYSBS" ColumnName="JYSBS" />
+          <ScalarProperty Name="PJJYHS" ColumnName="PJJYHS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BAT_Captcha">
+      <EntityTypeMapping TypeName="TCPJW3Model1.BAT_Captcha">
+        <MappingFragment StoreEntitySet="BAT_Captcha">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SJH" ColumnName="SJH" />
+          <ScalarProperty Name="YZM" ColumnName="YZM" />
+          <ScalarProperty Name="EFET" ColumnName="EFET" />
+          <ScalarProperty Name="EXET" ColumnName="EXET" />
+          <ScalarProperty Name="CZZT" ColumnName="CZZT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BAT_EnterpriseOperator">
+      <EntityTypeMapping TypeName="TCPJW3Model1.BAT_EnterpriseOperator">
+        <MappingFragment StoreEntitySet="BAT_EnterpriseOperator">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="YHBH" ColumnName="YHBH" />
+          <ScalarProperty Name="YGXM" ColumnName="YGXM" />
+          <ScalarProperty Name="ZW" ColumnName="ZW" />
+          <ScalarProperty Name="SJHM" ColumnName="SJHM" />
+          <ScalarProperty Name="SFQY" ColumnName="SFQY" />
+          <ScalarProperty Name="BZ" ColumnName="BZ" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BAT_GoldAccount">
+      <EntityTypeMapping TypeName="TCPJW3Model1.BAT_GoldAccount">
+        <MappingFragment StoreEntitySet="BAT_GoldAccount">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Userid" ColumnName="Userid" />
+          <ScalarProperty Name="CjrecvAccNo" ColumnName="CjrecvAccNo" />
+          <ScalarProperty Name="RecvAccNm" ColumnName="RecvAccNm" />
+          <ScalarProperty Name="CjsameBank" ColumnName="CjsameBank" />
+          <ScalarProperty Name="CjrecvTgfi" ColumnName="CjrecvTgfi" />
+          <ScalarProperty Name="CjrecvBankNm" ColumnName="CjrecvBankNm" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BAT_ParValueInfo">
+      <EntityTypeMapping TypeName="TCPJW3Model1.BAT_ParValueInfo">
+        <MappingFragment StoreEntitySet="BAT_ParValueInfo">
+          <ScalarProperty Name="JYQQBH" ColumnName="JYQQBH" />
+          <ScalarProperty Name="Pvid" ColumnName="Pvid" />
+          <ScalarProperty Name="PMJE" ColumnName="PMJE" />
+          <ScalarProperty Name="DQR" ColumnName="DQR" />
+          <ScalarProperty Name="CDHQC" ColumnName="CDHQC" />
+          <ScalarProperty Name="PMJT" ColumnName="PMJT" />
+          <ScalarProperty Name="CJYLL" ColumnName="CJYLL" />
+          <ScalarProperty Name="CJMSWJG" ColumnName="CJMSWJG" />
+          <ScalarProperty Name="CJJG" ColumnName="CJJG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BAT_TradingData">
+      <EntityTypeMapping TypeName="TCPJW3Model1.BAT_TradingData">
+        <MappingFragment StoreEntitySet="BAT_TradingData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CountM" ColumnName="CountM" />
+          <ScalarProperty Name="YesDayCountM" ColumnName="YesDayCountM" />
+          <ScalarProperty Name="AvergeTime" ColumnName="AvergeTime" />
+          <ScalarProperty Name="OperTime" ColumnName="OperTime" />
+          <ScalarProperty Name="backup1" ColumnName="backup1" />
+          <ScalarProperty Name="backup2" ColumnName="backup2" />
+          <ScalarProperty Name="backup3" ColumnName="backup3" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BAT_TradingRecords">
+      <EntityTypeMapping TypeName="TCPJW3Model1.BAT_TradingRecords">
+        <MappingFragment StoreEntitySet="BAT_TradingRecords">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="JYQQBH" ColumnName="JYQQBH" />
+          <ScalarProperty Name="ZXZT" ColumnName="ZXZT" />
+          <ScalarProperty Name="CZSJ" ColumnName="CZSJ" />
+          <ScalarProperty Name="CZR" ColumnName="CZR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BAT_TradingRequest">
+      <EntityTypeMapping TypeName="TCPJW3Model1.BAT_TradingRequest">
+        <MappingFragment StoreEntitySet="BAT_TradingRequest">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="YWBH" ColumnName="YWBH" />
+          <ScalarProperty Name="FQR" ColumnName="FQR" />
+          <ScalarProperty Name="CPRBH" ColumnName="CPRBH" />
+          <ScalarProperty Name="CPRDH" ColumnName="CPRDH" />
+          <ScalarProperty Name="CPRMC" ColumnName="CPRMC" />
+          <ScalarProperty Name="SPRBH" ColumnName="SPRBH" />
+          <ScalarProperty Name="SPRDH" ColumnName="SPRDH" />
+          <ScalarProperty Name="SPRMC" ColumnName="SPRMC" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="FQSJ" ColumnName="FQSJ" />
+          <ScalarProperty Name="JYSHZT" ColumnName="JYSHZT" />
+          <ScalarProperty Name="JYSHSJ" ColumnName="JYSHSJ" />
+          <ScalarProperty Name="JYSHR" ColumnName="JYSHR" />
+          <ScalarProperty Name="JYZT" ColumnName="JYZT" />
+          <ScalarProperty Name="BZ" ColumnName="BZ" />
+          <ScalarProperty Name="ZXLSBH" ColumnName="ZXLSBH" />
+          <ScalarProperty Name="BSBH" ColumnName="BSBH" />
+          <ScalarProperty Name="ZXZT" ColumnName="ZXZT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BAT_VirtualAccount">
+      <EntityTypeMapping TypeName="TCPJW3Model1.BAT_VirtualAccount">
+        <MappingFragment StoreEntitySet="BAT_VirtualAccount">
+          <ScalarProperty Name="YHBH" ColumnName="YHBH" />
+          <ScalarProperty Name="QYMC" ColumnName="QYMC" />
+          <ScalarProperty Name="LXR" ColumnName="LXR" />
+          <ScalarProperty Name="LXRDH" ColumnName="LXRDH" />
+          <ScalarProperty Name="XNZH" ColumnName="XNZH" />
+          <ScalarProperty Name="SJR" ColumnName="SJR" />
+          <ScalarProperty Name="SJRDH" ColumnName="SJRDH" />
+          <ScalarProperty Name="YJDZ" ColumnName="YJDZ" />
+          <ScalarProperty Name="JS" ColumnName="JS" />
+          <ScalarProperty Name="SQSJ" ColumnName="SQSJ" />
+          <ScalarProperty Name="SHJD" ColumnName="SHJD" />
+          <ScalarProperty Name="SHSJ" ColumnName="SHSJ" />
+          <ScalarProperty Name="SHR" ColumnName="SHR" />
+          <ScalarProperty Name="BZ" ColumnName="BZ" />
+          <ScalarProperty Name="KDGS" ColumnName="KDGS" />
+          <ScalarProperty Name="KDDH" ColumnName="KDDH" />
+          <ScalarProperty Name="BankUp1" ColumnName="BankUp1" />
+          <ScalarProperty Name="BankUp2" ColumnName="BankUp2" />
+          <ScalarProperty Name="BankUp3" ColumnName="BankUp3" />
+          <ScalarProperty Name="BankUp4" ColumnName="BankUp4" />
+          <ScalarProperty Name="BankUp5" ColumnName="BankUp5" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

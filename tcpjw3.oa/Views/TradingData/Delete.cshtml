@@ -1,0 +1,88 @@
+﻿@model tcpjw3.oa.Models.BAT_TradingData
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>BAT_TradingData</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CountM)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CountM)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.YesDayCountM)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.YesDayCountM)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.AvergeTime)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.AvergeTime)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.OperTime)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.OperTime)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.backup1)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.backup1)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.backup2)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.backup2)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.backup3)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.backup3)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

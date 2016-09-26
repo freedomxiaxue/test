@@ -1,0 +1,13 @@
+﻿@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "BankType";
+        settings.Width = 180;
+        settings.SelectedIndex = 0;
+        //settings.Properties.DisplayFormatString = "DXp v. {0}";
+        settings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+        settings.Properties.TextField = "Text";
+        settings.Properties.ValueField = "Value";
+        settings.Properties.ValueType = typeof(int);
+
+    }).BindList(Model).GetHtml()

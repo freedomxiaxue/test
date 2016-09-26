@@ -1,0 +1,70 @@
+﻿@model tcpjw3.oa.Models.BAT_TradingData
+
+<style>
+    .form-horizontal {
+        margin-left:10px;
+    }
+    .col-md-10 {
+    margin-top:20px;
+    }
+    .form-control {
+    width:200px;
+    height:25px;
+    }
+</style>
+
+@using (Html.BeginForm("Edit", "TradingData",FormMethod.Post, "/TradingData/Index"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>交易数据更新</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group">
+        
+            
+            <div class="col-md-10">
+                交易总额      @Html.EditorFor(model => model.CountM, new { htmlAttributes = new { @class = "form-control" } })
+                   @Html.ValidationMessageFor(model => model.CountM, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+      
+            <div class="col-md-10">
+                上一交易日总额   @Html.EditorFor(model => model.YesDayCountM, new { htmlAttributes = new { @class = "form-control" ,@width="30px"} })
+                @Html.ValidationMessageFor(model => model.YesDayCountM, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+         
+            <div class="col-md-10">
+                平均耗时   @Html.EditorFor(model => model.AvergeTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AvergeTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+           
+            <div class="col-md-10">
+                操作时间   @Html.EditorFor(model => model.OperTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OperTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+

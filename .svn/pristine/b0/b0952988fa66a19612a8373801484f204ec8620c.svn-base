@@ -1,0 +1,52 @@
+﻿@model tcpjw3.oa.Models.TicketDiscount
+
+
+@Html.DevExpress().PageControl(settings =>
+{
+    //settings.EnableClientSideAPI = true;
+    //settings.ActivateTabPageAction = ActivateTabPageAction.Click;
+    settings.EnableHotTrack = true;
+
+
+    settings.Name = "PageControl" + ViewData["key"];
+
+    settings.Width = Unit.Percentage(100);
+    settings.CallbackRouteValues = new { Controller = "Discount", Action = "DetailPage", ticketId = ViewData["key"] };
+
+    settings.TabPages.Add("发布人详情").SetContent(() =>
+    {
+        Html.RenderAction("PersonInformation", new { userID = Model.UserID });
+    });
+    settings.TabPages.Add("汇票详情").SetContent(() =>
+    {
+        Html.RenderAction("TicketInformation", new { ticketId = Model.TicketID });
+
+    });
+    settings.TabPages.Add("正面隐私处理","tab2").SetContent(() =>
+    {
+        Html.RenderAction("TicketFaceImgInformation", new { ticketId = Model.TicketID });
+        //    settings.ClientSideEvents.Init = @"function(s, e){
+        //var face = document.getElementById('frameFace'),  
+        //    mosaicsDragFace = new mosaicsDrag(face);} ";
+
+    });
+    settings.TabPages.Add("背面隐私处理").SetContent(() =>
+    {
+        Html.RenderAction("TicketBackImgInformation", new { ticketId = Model.TicketID });
+    });
+    settings.TabPages.Add("汇票审核").SetContent(() =>
+    {
+        Html.RenderAction("DiscountTicketInformation", new { ticketId = Model.TicketID });
+    });
+
+    settings.ClientSideEvents.ActiveTabChanged = @"function(s, e){
+    var face = document.getElementById('frameFace');
+if(face!=null)  {mosaicsDragFace = new mosaicsDrag(face);}
+var  back = document.getElementById('frameBack'); 
+if(back!=null){ mosaicsDragBack = new mosaicsDrag(back)};
+} ";
+
+
+
+
+}).GetHtml()

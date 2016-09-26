@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<items>
+  <items Text="用户">
+    <item Text="会员列表"  NavigateUrl="/showuser/showuserlist" />
+  </items>
+  <items Text="汇票">
+    <item Text="竞价管理" NavigateUrl="/discount/index" />
+    <item Text="定向交易" NavigateUrl="/agencytrade/index"/>
+  </items>
+  <items Text="资金账户">
+    <item Text="出金账户" NavigateUrl="/goldaccount/index" />
+    <item Text="账户审核" NavigateUrl="/virtualaccount/companyvirtualacc"/>
+    <item Text="账户申请" NavigateUrl="/virtualaccount/getqymc" />
+    <item Text="交易资金更新" NavigateUrl="/tradingdata/index" />
+  </items>
+
+  <items Text="功能">
+    <item Text="添加新闻"  />
+    <item Text="新闻列表" NavigateUrl="/showarticle/showarticlelist"/>
+    <item Text="手机验证码" NavigateUrl="/showcode/showcodelist"/>
+    <item Text="中介映射" NavigateUrl="/agency/showagencylist"/>
+    <item Text="价格走势" NavigateUrl=""/>
+  </items>
+  <items Text="系统">
+    <item Text="权限" NavigateUrl="/account/role"/>
+    <item Text="配置" NavigateUrl="/sysconfig/index"/>
+  </items>
+</items>

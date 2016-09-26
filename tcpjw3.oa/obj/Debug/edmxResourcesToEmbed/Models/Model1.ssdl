@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TCPJW3Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AgentUser">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="256" />
+    <Property Name="Zip" Type="varchar" MaxLength="16" />
+    <Property Name="ProvinceID" Type="varchar" MaxLength="16" />
+    <Property Name="CityID" Type="varchar" MaxLength="16" />
+    <Property Name="AreaID" Type="varchar" MaxLength="16" />
+    <Property Name="Telephone" Type="varchar" MaxLength="32" />
+    <Property Name="Fax" Type="varchar" MaxLength="32" />
+    <Property Name="Phone" Type="varchar" MaxLength="32" />
+    <Property Name="Email" Type="varchar" MaxLength="128" />
+    <Property Name="Picture1" Type="nvarchar" MaxLength="256" />
+    <Property Name="Picture2" Type="nvarchar" MaxLength="256" />
+    <Property Name="Picture3" Type="nvarchar" MaxLength="256" />
+    <Property Name="Picture4" Type="nvarchar" MaxLength="256" />
+    <Property Name="Picture5" Type="nvarchar" MaxLength="256" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="LastLoginTime" Type="datetime" />
+    <Property Name="LastLoginIP" Type="varchar" MaxLength="32" />
+  </EntityType>
+  <EntityType Name="BAT_CapitalDealInfo">
+    <Key>
+      <PropertyRef Name="YHBH" />
+    </Key>
+    <Property Name="YHBH" Type="int" Nullable="false" />
+    <Property Name="JYCGS" Type="int" />
+    <Property Name="JYSBS" Type="int" />
+    <Property Name="PJJYHS" Type="int" />
+  </EntityType>
+  <EntityType Name="BAT_Captcha">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SJH" Type="nvarchar" MaxLength="20" />
+    <Property Name="YZM" Type="nvarchar" MaxLength="6" />
+    <Property Name="EFET" Type="datetime" />
+    <Property Name="EXET" Type="datetime" />
+    <Property Name="CZZT" Type="char" MaxLength="2" />
+  </EntityType>
+  <EntityType Name="BAT_EnterpriseOperator">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="YHBH" Type="int" />
+    <Property Name="YGXM" Type="nvarchar" MaxLength="200" />
+    <Property Name="ZW" Type="nvarchar" MaxLength="500" />
+    <Property Name="SJHM" Type="nvarchar" MaxLength="20" />
+    <Property Name="SFQY" Type="char" MaxLength="1" />
+    <Property Name="BZ" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="BAT_GoldAccount">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Userid" Type="int" Nullable="false" />
+    <Property Name="CjrecvAccNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RecvAccNm" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CjsameBank" Type="bit" Nullable="false" />
+    <Property Name="CjrecvTgfi" Type="nvarchar" MaxLength="20" />
+    <Property Name="CjrecvBankNm" Type="nvarchar" MaxLength="122" />
+  </EntityType>
+  <EntityType Name="BAT_ParValueInfo">
+    <Key>
+      <PropertyRef Name="JYQQBH" />
+      <PropertyRef Name="Pvid" />
+    </Key>
+    <Property Name="JYQQBH" Type="int" Nullable="false" />
+    <Property Name="Pvid" Type="int" Nullable="false" />
+    <Property Name="PMJE" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="DQR" Type="datetime" />
+    <Property Name="CDHQC" Type="nvarchar" MaxLength="200" />
+    <Property Name="PMJT" Type="nvarchar" MaxLength="500" />
+    <Property Name="CJYLL" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="CJMSWJG" Type="decimal" Precision="20" Scale="8" />
+    <Property Name="CJJG" Type="decimal" Precision="20" Scale="8" />
+  </EntityType>
+  <EntityType Name="BAT_TradingData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="CountM" Type="decimal" Precision="20" Scale="8" Nullable="false" />
+    <Property Name="YesDayCountM" Type="decimal" Precision="20" Scale="8" Nullable="false" />
+    <Property Name="AvergeTime" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="OperTime" Type="datetime" Nullable="false" />
+    <Property Name="backup1" Type="nvarchar" MaxLength="100" />
+    <Property Name="backup2" Type="nvarchar" MaxLength="100" />
+    <Property Name="backup3" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="BAT_TradingRecords">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JYQQBH" Type="int" Nullable="false" />
+    <Property Name="ZXZT" Type="char" MaxLength="2" />
+    <Property Name="CZSJ" Type="datetime" />
+    <Property Name="CZR" Type="int" />
+  </EntityType>
+  <EntityType Name="BAT_TradingRequest">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="YWBH" Type="nvarchar" MaxLength="50" />
+    <Property Name="FQR" Type="int" />
+    <Property Name="CPRBH" Type="int" />
+    <Property Name="CPRDH" Type="nvarchar" MaxLength="15" />
+    <Property Name="CPRMC" Type="nvarchar" MaxLength="100" />
+    <Property Name="SPRBH" Type="int" />
+    <Property Name="SPRDH" Type="nvarchar" MaxLength="15" />
+    <Property Name="SPRMC" Type="nvarchar" MaxLength="50" />
+    <Property Name="EndTime" Type="datetime" />
+    <Property Name="FQSJ" Type="datetime" />
+    <Property Name="JYSHZT" Type="char" MaxLength="1" />
+    <Property Name="JYSHSJ" Type="datetime" />
+    <Property Name="JYSHR" Type="nvarchar" MaxLength="50" />
+    <Property Name="JYZT" Type="char" MaxLength="2" />
+    <Property Name="BZ" Type="nvarchar" MaxLength="500" />
+    <Property Name="ZXLSBH" Type="int" />
+    <Property Name="BSBH" Type="char" MaxLength="36" />
+    <Property Name="ZXZT" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="BAT_VirtualAccount">
+    <Key>
+      <PropertyRef Name="YHBH" />
+    </Key>
+    <Property Name="YHBH" Type="int" Nullable="false" />
+    <Property Name="QYMC" Type="nvarchar" MaxLength="500" />
+    <Property Name="LXR" Type="nvarchar" MaxLength="20" />
+    <Property Name="LXRDH" Type="nvarchar" MaxLength="50" />
+    <Property Name="XNZH" Type="nvarchar" MaxLength="30" />
+    <Property Name="SJR" Type="nvarchar" MaxLength="20" />
+    <Property Name="SJRDH" Type="nvarchar" MaxLength="50" />
+    <Property Name="YJDZ" Type="nvarchar" MaxLength="500" />
+    <Property Name="JS" Type="char" MaxLength="1" />
+    <Property Name="SQSJ" Type="datetime" />
+    <Property Name="SHJD" Type="char" MaxLength="2" />
+    <Property Name="SHSJ" Type="datetime" />
+    <Property Name="SHR" Type="nvarchar" MaxLength="50" />
+    <Property Name="BZ" Type="nvarchar" MaxLength="500" />
+    <Property Name="KDGS" Type="nvarchar" MaxLength="200" />
+    <Property Name="KDDH" Type="nvarchar" MaxLength="100" />
+    <Property Name="BankUp1" Type="nvarchar" MaxLength="500" />
+    <Property Name="BankUp2" Type="nvarchar" MaxLength="500" />
+    <Property Name="BankUp3" Type="nvarchar" MaxLength="500" />
+    <Property Name="BankUp4" Type="nvarchar" MaxLength="500" />
+    <Property Name="BankUp5" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityContainer Name="TCPJW3Model1StoreContainer">
+    <EntitySet Name="AgentUser" EntityType="Self.AgentUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BAT_CapitalDealInfo" EntityType="Self.BAT_CapitalDealInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BAT_Captcha" EntityType="Self.BAT_Captcha" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BAT_EnterpriseOperator" EntityType="Self.BAT_EnterpriseOperator" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BAT_GoldAccount" EntityType="Self.BAT_GoldAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BAT_ParValueInfo" EntityType="Self.BAT_ParValueInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BAT_TradingData" EntityType="Self.BAT_TradingData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BAT_TradingRecords" EntityType="Self.BAT_TradingRecords" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BAT_TradingRequest" EntityType="Self.BAT_TradingRequest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BAT_VirtualAccount" EntityType="Self.BAT_VirtualAccount" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

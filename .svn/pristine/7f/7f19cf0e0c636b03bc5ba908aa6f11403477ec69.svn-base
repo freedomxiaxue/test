@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.title = "生成资金账户";
+}
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+    <p>
+        用户编号
+        <input type="text" name="username" value="@ViewData["Uid"]" />
+        @Html.Hidden("Uid", ViewData["Uid"])
+    </p>
+    <p><input name="action" type="submit" value="查询公司名称" /></p>
+
+    <p>@Html.TextBox("qymc", ViewData["qymc"]) </p>
+
+    <p><input name="action" type="submit" value="生成虚拟账户" /></p>
+    <p>@ViewData["xnzh"]</p>
+    @Html.Hidden("vr", ViewData["xnzh"]);
+    @Html.Hidden("nuid", ViewData["xnusid"]);
+
+    <p><input type="submit" name="action" value="保存" /></p>
+    <p>@ViewData["result"]</p>
+}
+

@@ -1,0 +1,129 @@
+@{
+    var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "GridView1";
+        settings.CallbackRouteValues = new { Controller = "VirtualAccount", Action = "GridView1Partial" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "VirtualAccount", Action = "GridView1PartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "VirtualAccount", Action = "GridView1PartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "VirtualAccount", Action = "GridView1PartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+        settings.Theme ="";
+        settings.KeyFieldName = "YHBH";
+
+        settings.SettingsPager.Visible = true;
+        settings.SettingsPager.PageSize = 20;
+        //settings.S
+        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.SettingsBehavior.AllowFocusedRow = true;
+
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "YHBH";
+            column.Caption = "用户编号";
+            column.ColumnType = MVCxGridViewColumnType.TextBox;
+
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "QYMC";
+            column.Caption = "企业名称";
+            column.ColumnType = MVCxGridViewColumnType.TextBox;
+
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "LXR";
+            column.Caption = "联系人";
+            column.ColumnType = MVCxGridViewColumnType.TextBox;
+
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "LXRDH";
+            column.Caption = "联系人电话";
+            column.ColumnType = MVCxGridViewColumnType.TextBox;
+
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "XNZH";
+            column.Caption = "资金账号";
+            column.ColumnType = MVCxGridViewColumnType.TextBox;
+
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "JS";
+            column.Caption = "角色";
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.Items.Add("持票人", "1");
+            comboBoxProperties.Items.Add("贴现机构", "0");
+            comboBoxProperties.ValueType = typeof(int);
+
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "SQSJ";
+            column.Caption = "申请时间";
+            column.ColumnType = MVCxGridViewColumnType.DateEdit;
+
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "SHJD";
+            column.Caption = "审核进度";
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.Items.Add("账户申请审核中", "0 ");
+            comboBoxProperties.Items.Add("账户申请审核通过", "1 ");
+            comboBoxProperties.Items.Add("账户申请审核不通过", "2 ");
+            comboBoxProperties.Items.Add("填写开户清单", "3 ");
+            comboBoxProperties.Items.Add("操作员信息审核中", "4 ");
+            comboBoxProperties.Items.Add("操作员信息审核通过", "5 ");
+            comboBoxProperties.Items.Add("操作员信息审核不通过", "6 ");
+            comboBoxProperties.Items.Add("银行收到开户资料", "7 ");
+            comboBoxProperties.Items.Add("银行正在审核", "8 ");
+            comboBoxProperties.Items.Add("开户成功", "9 ");
+            comboBoxProperties.ValueType = typeof(string);
+
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "SHSJ";
+            column.Caption = "审核时间";
+            column.ColumnType = MVCxGridViewColumnType.DateEdit;
+
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "SHR";
+            column.Caption = "审核人";
+            column.ColumnType = MVCxGridViewColumnType.TextBox;
+
+        });
+        ///////////****************************操作员信息
+        settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = false;
+        settings.SettingsDetail.ShowDetailRow = true;
+
+        settings.SetDetailRowTemplateContent(c =>
+        {
+            Html.RenderAction("FocusViewEn", new { YHBH = DataBinder.Eval(c.DataItem, "YHBH") });
+        });
+        ///////////****************************操作员信息
+
+    });
+    if (ViewData["EditError"] != null){
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

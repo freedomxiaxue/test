@@ -1,0 +1,56 @@
+﻿@model IEnumerable<tcpjw3.oa.Models.BAT_TradingData>
+
+<style>
+    th {
+        width:200px;
+        
+    }
+    td {
+        text-align:center;
+    }
+</style>
+   
+    <table class="table" style="margin-top:20px;">
+        <tr>
+            <th>
+             
+
+                交易总额
+            </th>
+            <th>
+               上一交易日总额
+            </th>
+            <th>
+              交易平均耗时
+            </th>
+            <th>
+             操作时间
+            </th>
+            
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr style="line-height: 3;">
+            <td>
+                @Html.DisplayFor(modelItem => item.CountM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YesDayCountM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvergeTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OperTime)
+            </td>
+          
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) 
+             
+            </td>
+        </tr>
+    }
+    
+    </table>
+

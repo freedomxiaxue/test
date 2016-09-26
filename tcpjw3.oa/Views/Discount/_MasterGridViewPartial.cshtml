@@ -1,0 +1,207 @@
+
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "MasterGridViewPartial";
+        settings.CallbackRouteValues = new { Controller = "Discount", Action = "MasterGridViewPartial", test = ViewBag.Test };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Discount", Action = "IndexPartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Discount", Action = "IndexPartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Discount", Action = "IndexPartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = false;
+        settings.CommandColumn.ShowDeleteButton = false;
+        settings.CommandColumn.ShowEditButton = false;
+
+        settings.KeyFieldName = "TicketID";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowFilterRow = true;
+        //settings.Settings.GridLines =System.Web.UI.WebControls.GridLines.Vertical;
+        //settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.SettingsBehavior.AutoExpandAllGroups = true;
+        settings.SettingsBehavior.AllowFocusedRow = true;
+        settings.SettingsBehavior.EnableRowHotTrack = true;
+        settings.SettingsBehavior.ColumnResizeMode = ColumnResizeMode.Control;
+        settings.SettingsContextMenu.Enabled = true;
+        settings.SettingsDetail.ShowDetailRow = true;
+        settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+        settings.SettingsBehavior.AllowClientEventsOnLoad = false;
+
+        settings.SettingsPager.PageSize = 50;
+        settings.Height = System.Web.UI.WebControls.Unit.Percentage(100);
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+        settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
+        settings.Settings.VerticalScrollBarMode = ScrollBarMode.Visible;
+        //settings.SettingsDetail.ShowDetailButtons = true;
+        //settings.SettingsDetail.ShowDetailRow = true;
+        //settings.SettingsPager.Visible = true;
+        //settings.Settings.ShowGroupPanel = false;
+        //settings.Settings.ShowFilterRow = false;
+        //settings.SettingsBehavior.AllowSelectByRowClick = false;
+
+        settings.Columns.Add(
+   column =>
+   {
+       column.FieldName = "TicketID";
+       column.Caption = "编号";
+   }
+);
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "BankName";
+            column.Caption = "承兑行名称";
+            column.Width = System.Web.UI.WebControls.Unit.Percentage(20);
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "TicketPrice";
+            column.Caption = "票面金额";
+            column.ColumnType = MVCxGridViewColumnType.SpinEdit;
+            var spinEditProperties = column.PropertiesEdit as SpinEditProperties;
+            spinEditProperties.DisplayFormatString = "{0:C2}";
+            spinEditProperties.DisplayFormatInEditMode = true;
+            spinEditProperties.MinValue = 0;
+            //spinEditProperties.MaxValue = 1000000;
+            spinEditProperties.SpinButtons.ShowLargeIncrementButtons = true;
+        });
+        settings.Columns.Add("TicketEndTime", "汇票到期日", MVCxGridViewColumnType.DateEdit).PropertiesEdit.DisplayFormatString = "d";
+        settings.Columns.Add("ProvinceName", "省份");
+        settings.Columns.Add("CityName", "城市");
+
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "TradeState";
+            column.Caption = "交易类型";
+
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.Items.Add("预约竞价", "128");
+            comboBoxProperties.Items.Add("竞价中", "1");
+            comboBoxProperties.Items.Add("发起要约", "256");
+            comboBoxProperties.Items.Add("确认要约", "2");
+            comboBoxProperties.Items.Add("支付冻结", "4");
+            comboBoxProperties.Items.Add("持票人背书", "8");
+            comboBoxProperties.Items.Add("签收解冻", "16");
+            comboBoxProperties.Items.Add("交易完成", "32");
+            comboBoxProperties.Items.Add("中止交易", "64");
+            comboBoxProperties.ValueType = typeof(int);
+        });
+        //settings.Columns.Add("PublishTime", "发布日期", MVCxGridViewColumnType.DateEdit).PropertiesEdit.DisplayFormatString = "d";
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "PublishTime";
+            column.Caption = "发布日期";
+            column.ColumnType = MVCxGridViewColumnType.DateEdit;
+            column.PropertiesEdit.DisplayFormatString = "d";
+            column.GroupIndex = 0;
+            column.SortDescending();
+
+        });
+
+        settings.Columns.Add("UserID", "用户编号");
+        //settings.Columns.Add("AuditState", "审核状态");
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "AuditState";
+            column.Caption = "审核状态";
+
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.Items.Add("待审核", "1");
+            comboBoxProperties.Items.Add("审核通过", "2");
+            comboBoxProperties.Items.Add("审核不通过", "4");
+            comboBoxProperties.ValueType = typeof(int);
+        });
+        settings.Columns.Add("AuditTime", "审核时间").PropertiesEdit.DisplayFormatString = "d";
+
+        //settings.SetDetailRowTemplateContent(c =>
+        //{
+        //    Html.DevExpress().PageControl(
+        //    pageControlSettings =>
+        //    {
+        //        pageControlSettings.EnableClientSideAPI = true;
+        //        pageControlSettings.Name = "mainTabs";
+        //        pageControlSettings.ActivateTabPageAction = ActivateTabPageAction.Click;
+        //        pageControlSettings.EnableHotTrack = true;
+        //        if (System.Threading.Thread.CurrentThread.CurrentCulture.Name.Substring(0, 2) == "ar")
+        //        {
+        //            pageControlSettings.RightToLeft = DefaultBoolean.True;
+        //        }
+        //        //pageControlSettings.TabPages.Add(@BRO.Resources.Views.benFile.Index.benIdsTitle).SetContent(() =>
+        //        //{
+        //        //    ViewContext.Writer.Write(Html.Action("benMembersbenIdsGridViewPartial", "benMembers"));
+        //        //}
+        //        //);
+        //        pageControlSettings.TabPages.Add("Tab 0").SetContent(() =>
+        //    {
+        //        ViewContext.Writer.Write("Page content 0");
+        //    });
+        //        pageControlSettings.TabPages.Add("Tab 1").SetContent(() =>
+        //    {
+        //        ViewContext.Writer.Write("Page content 1 </b>, TicketID: <b>" + DataBinder.Eval(c.DataItem, "TicketID"));
+        //    });
+        //        pageControlSettings.TabPages.Add("Tab 2").SetContent(() =>
+        //    {
+        //        ViewContext.Writer.Write("Page content 2");
+        //    });
+        //        pageControlSettings.TabPages.Add("Tab 3").SetContent(() =>
+        //    {
+        //        ViewContext.Writer.Write("Page content 3");
+        //    });
+        //        pageControlSettings.TabPages.Add("Tab 4").SetContent(() =>
+        //    {
+        //        ViewContext.Writer.Write("Page content 4");
+        //    });
+        //        pageControlSettings.TabPages.Add("Tab 5").SetContent(() =>
+        //        {
+        //            ViewContext.Writer.Write(Html.Partial("example", new { ticketid = DataBinder.Eval(c.DataItem, "TicketID") }));
+        //            //Html.RenderAction("example", "Discount", new { ticketid = DataBinder.Eval(c.DataItem, "TicketID") });
+        //            //Html.RenderAction("example", new { Id = DataBinder.Eval(c.DataItem, "TicketID") });
+        //        });
+
+        //    }).GetHtml();
+
+
+        settings.SetDetailRowTemplateContent(container =>
+        {
+            var keyValue = container.KeyValue;
+            ViewContext.Writer.Write("<div style='padding: 3px 3px 2px 3px'>");
+            Html.RenderAction("DetailPage", new { ticketId = keyValue });
+            ViewContext.Writer.Write("</div>");
+        });
+
+        //settings.CellEditorInitialize = (s, e) =>
+        //{
+        //    ASPxEdit editor = (ASPxEdit)e.Editor;
+        //    editor.ValidationSettings.Display = Display.Dynamic;
+        //};
+
+
+        //settings.SetDetailRowTemplateContent("Page content 3");
+
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+
+@grid.Bind(Model).GetHtml()
+
+
+
+
+
+
+
+
+
+

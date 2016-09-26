@@ -1,0 +1,10 @@
+﻿
+@{
+    ViewBag.Title = "手机验证码";
+}
+
+@*<h2>ShowCodeList</h2>*@
+
+@Html.Action("CodeListPartial")
+
+

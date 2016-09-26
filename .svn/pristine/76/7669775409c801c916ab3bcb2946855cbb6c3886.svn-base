@@ -1,0 +1,55 @@
+@{
+	var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "UCEditGridViewPartial";
+        settings.CallbackRouteValues = new { Controller = "ShowUser", Action = "UCEditGridViewPartial" };
+
+				settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "ShowUser", Action = "UCEditGridViewPartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "ShowUser", Action = "UCEditGridViewPartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "ShowUser", Action = "UCEditGridViewPartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+		settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+		settings.KeyFieldName = "ID";
+
+		settings.SettingsPager.Visible = true;
+		settings.Settings.ShowGroupPanel = true;
+		settings.Settings.ShowFilterRow = true;
+		settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+				settings.Columns.Add("ID");
+				settings.Columns.Add("UserName");
+				settings.Columns.Add("FullName");
+				settings.Columns.Add("Name");
+				settings.Columns.Add("Avatar");
+				settings.Columns.Add("RegisterType");
+				settings.Columns.Add("ProvinceID");
+				settings.Columns.Add("CityID");
+				settings.Columns.Add("DistrictID");
+				settings.Columns.Add("Telephone");
+				settings.Columns.Add("Address");
+				settings.Columns.Add("NameOfPIC");
+				settings.Columns.Add("PositionOfPIC");
+				settings.Columns.Add("QQOfPIC");
+				settings.Columns.Add("Zip");
+				settings.Columns.Add("Fax");
+				settings.Columns.Add("ALTakerLevel");
+				settings.Columns.Add("ALBearerLevel");
+				settings.Columns.Add("ALAdvantage");
+				settings.Columns.Add("ALNote");
+				settings.Columns.Add("Identor");
+				settings.Columns.Add("IsAgency");
+				settings.Columns.Add("Email");
+				settings.Columns.Add("Phone");
+				settings.Columns.Add("RegisterTime");
+				settings.Columns.Add("LastLoginTime");
+			});
+		if (ViewData["EditError"] != null){
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

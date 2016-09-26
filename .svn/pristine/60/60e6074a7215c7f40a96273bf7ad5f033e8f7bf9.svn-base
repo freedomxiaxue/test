@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace tcpjw3.oa.Controllers
+{
+    /// <summary>
+    /// 虚拟账户控制器
+    /// 包括 虚拟账户审核、虚拟账户申请
+    /// </summary>
+    public class VirtualAccountController : Controller
+    {
+        // GET: VirtualAccount
+        public ActionResult Index()
+        {
+            return View();
+        }
+    }
+}

@@ -1,0 +1,39 @@
+@{
+    var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "AgencyList";
+        settings.CallbackRouteValues = new { Controller = "Agency", Action = "AgencyListPartial" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Agency", Action = "AgencyListPartialAddNew", };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Agency", Action = "AgencyListPartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Agency", Action = "AgencyListPartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+        settings.SettingsText.CommandNew = "新增";
+        settings.SettingsText.CommandUpdate = "编辑";
+        settings.SettingsText.CommandCancel = "取消";
+        settings.SettingsText.CommandEdit = "编辑";
+        settings.SettingsText.CommandDelete = "删除";
+
+        settings.KeyFieldName = "ID";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        //settings.Columns.Add("ID");
+        settings.Columns.Add(column=> { column.FieldName = "AgencyId";column.Caption = "中介编号"; column.Width = Unit.Pixel(200); });
+        settings.Columns.Add(column => { column.FieldName = "UserId"; column.Caption = "用户编号"; column.Width = Unit.Pixel(200); });
+        settings.Columns.Add(column => { column.FieldName = "Note"; column.Caption = "备注"; column.Width = Unit.Pixel(200); });
+    });
+    if (ViewData["EditError"] != null){
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

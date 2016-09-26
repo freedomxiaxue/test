@@ -1,0 +1,144 @@
+@{
+    var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "ShowAritclesGVPartial";
+        settings.CallbackRouteValues = new { Controller = "ShowArticle", Action = "ShowAritclesGVPartial" };
+        settings.Width = Unit.Percentage(100);
+        settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+        settings.Settings.VerticalScrollableHeight = 600;
+        settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
+
+        //settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "ShowArticle", Action = "ShowAritclesGVPartialAddNew" };
+        //settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "ShowArticle", Action = "ShowAritclesGVPartialUpdate" };
+        //settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "ShowArticle", Action = "ShowAritclesGVPartialDelete" };
+        //settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        //settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.Columns.Add(column =>
+        {
+            column.Caption = "操作";
+            column.SetDataItemTemplateContent(c =>
+            {
+                ViewContext.Writer.Write(
+                    Html.ActionLink("编辑", "ShowAritclesGVPartialUpdate", new { NewId = DataBinder.Eval(c.DataItem, "ID") })
+                );
+            });
+            column.SetHeaderTemplateContent(c =>
+            {
+                ViewContext.Writer.Write(
+                    Html.ActionLink("添加", "ShowAritclesGVPartialUpdate", new { NewId = -1 }).ToHtmlString()
+                );
+            });
+            column.Settings.AllowDragDrop = DefaultBoolean.False;
+            column.Settings.AllowSort = DefaultBoolean.False;
+            column.Width = 140;
+        });
+
+        //settings.CommandColumn.Visible = true;
+        //settings.CommandColumn.ShowNewButton = true;
+        //settings.CommandColumn.ShowDeleteButton = true;
+        //settings.CommandColumn.ShowEditButton = true;
+        //settings.SettingsText.CommandEdit = "编辑";
+
+        settings.KeyFieldName = "ID";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.Columns.Add(column=> { column.FieldName = "ID";column.Visible = false; });
+        settings.Columns.Add(column => { column.FieldName = "Nclassid"; column.Visible = false; });
+        settings.Columns.Add(column=> { column.FieldName = "Classname";column.Caption = "栏目名称"; });
+        settings.Columns.Add(column => { column.FieldName = "Title"; column.Caption = "标题"; });
+        settings.Columns.Add(column=> {
+            column.Caption = "图片标题";
+            column.SetDataItemTemplateContent(c =>
+            {
+                ViewContext.Writer.Write("<img style=\"height:90px;width:90px;\" src=\""+ DataBinder.Eval(c.DataItem, "Imgtitleurl").ToString() + "\" alt=\"\" />");
+            });
+        });
+        settings.Columns.Add(column => { column.FieldName = "NDescription";column.Caption = "简介"; });
+        settings.Columns.Add(column => { column.FieldName = "Fromnew"; column.Caption = "来源"; });
+        settings.Columns.Add(column => { column.FieldName = "Publisher";column.Caption = "发布人"; });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Publishtime"; column.Caption = "发布时间";
+            column.ColumnType = MVCxGridViewColumnType.DateEdit;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Isslide";
+            column.Caption = "是否幻灯";
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic.Add("", "");
+            dic.Add("0", "否");
+            dic.Add("1", "是");
+            comboBoxProperties.DataSource = dic;
+            comboBoxProperties.ValueField = "Key";
+            comboBoxProperties.TextField = "Value";
+            comboBoxProperties.DropDownStyle = DropDownStyle.DropDown;
+        });
+        settings.Columns.Add(column=> {
+            column.FieldName = "Isrecommend";column.Caption = "是否推荐";
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic.Add("", "");
+            dic.Add("0", "否");
+            dic.Add("1", "是");
+            comboBoxProperties.DataSource = dic;
+            comboBoxProperties.ValueField = "Key";
+            comboBoxProperties.TextField = "Value";
+            comboBoxProperties.DropDownStyle = DropDownStyle.DropDown;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Istop"; column.Caption = "是否置顶";
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic.Add("", "");
+            dic.Add("0", "否");
+            dic.Add("1", "是");
+            comboBoxProperties.DataSource = dic;
+            comboBoxProperties.ValueField = "Key";
+            comboBoxProperties.TextField = "Value";
+            comboBoxProperties.DropDownStyle = DropDownStyle.DropDown;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Iscolor"; column.Caption = "是否加色";
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic.Add("", "");
+            dic.Add("0", "否");
+            dic.Add("1", "是");
+            comboBoxProperties.DataSource = dic;
+            comboBoxProperties.ValueField = "Key";
+            comboBoxProperties.TextField = "Value";
+            comboBoxProperties.DropDownStyle = DropDownStyle.DropDown;
+        });
+        //settings.Columns.Add("Seo_title");
+        //settings.Columns.Add("Seo_keywords");
+        //settings.Columns.Add("Seo_desciption");
+        //settings.Columns.Add(column => { column.FieldName = "Content";});
+        //settings.Columns.Add("Editor");
+        //settings.Columns.Add("Edittime");
+        //settings.Columns.Add("AuditState");
+        //settings.Columns.Add("Auditor");
+        //settings.Columns.Add("AuditTime");
+        //settings.Columns.Add("Slideurl");
+        //settings.Columns.Add("Spare1");
+        //settings.Columns.Add("Spare2");
+        //settings.Columns.Add("Spare3");
+        //settings.Columns.Add("Spare4");
+        //settings.Columns.Add("Spare5");
+    });
+    if (ViewData["EditError"] != null){
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

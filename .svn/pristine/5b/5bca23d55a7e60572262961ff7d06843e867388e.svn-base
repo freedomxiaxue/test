@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace tcpjw3.oa.Controllers
+{
+    /// <summary>
+    /// 竞价管理控制器
+    /// 最好能够包含定向交易
+    /// </summary>
+    public class DiscountController : Controller
+    {
+        // GET: Discount
+        public ActionResult Index()
+        {
+            return View();
+        }
+    }
+}

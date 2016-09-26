@@ -1,0 +1,18 @@
+﻿@Html.DevExpress().Splitter(settings =>
+{
+    settings.Name = "Splitter";
+    settings.Orientation = Orientation.Vertical;
+    //settings.Height = 800;
+    settings.Height = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.AllowResize = true;
+    settings.Panes.Add(pane =>
+    {
+        pane.Name = "DataList";
+        pane.SetContent(() =>
+        {
+            Html.RenderAction("MasterGridViewPartial");
+        });
+    });
+    settings.ClientSideEvents.PaneResized = "function(s, e){ MasterGridViewPartial.SetHeight(s.GetPaneByName('DataList').GetClientHeight()); }";
+}).GetHtml()

@@ -1,0 +1,31 @@
+﻿
+.con_table th {
+    font-weight: normal;
+}
+
+.con_table td {
+    padding: 20px 5px;
+}
+
+    .con_table td .con_input {
+        border: 1px solid #ccc;
+        height: 36px;
+        line-height: 36px;
+        padding: 0 5px;
+        width: 98%;
+    }
+
+    .con_table td .con_but {
+        background: #09F;
+        border: none;
+        text-align: center;
+        padding: 5px 15px;
+        color: #fff;
+        border-radius: 5px;
+    }
+
+        .con_table td .con_but:hover {
+            filter: alpha(opacity=80);
+            -moz-opacity: 0.8;
+            opacity: 0.8;
+        }

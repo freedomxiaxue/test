@@ -1,0 +1,93 @@
+@{
+    var treeList = Html.DevExpress().TreeList(settings =>
+    {
+        settings.Name = "TreeList";
+        settings.CallbackRouteValues = new { Controller = "SysConfig", Action = "TreeListPartial" };
+
+        //settings.SettingsPager.PageSize = 50;
+        //settings.Height = System.Web.UI.WebControls.Unit.Percentage(100);
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+        settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
+        settings.Settings.VerticalScrollBarMode = ScrollBarMode.Visible;
+
+        settings.AutoGenerateColumns = false;
+
+        settings.KeyFieldName = "ID";
+        settings.ParentFieldName = "PID";
+
+        settings.Columns.Add(
+    column =>
+    {
+        column.FieldName = "Text";
+        column.Width = System.Web.UI.WebControls.Unit.Percentage(20);
+    }
+);
+        settings.Columns.Add(
+    column =>
+    {
+        column.FieldName = "Value";
+        column.Width = System.Web.UI.WebControls.Unit.Percentage(20);
+    }
+);
+        settings.Columns.Add(
+column =>
+{
+    column.FieldName = "ID";
+    column.Width= System.Web.UI.WebControls.Unit.Percentage(5);
+}
+);
+        settings.Columns.Add(
+    column =>
+    {
+        column.FieldName = "PID";
+        column.Width = System.Web.UI.WebControls.Unit.Percentage(5);
+    }
+);
+        settings.Columns.Add(
+    column =>
+    {
+        column.FieldName = "Sort";
+        column.Width = System.Web.UI.WebControls.Unit.Percentage(5);
+    }
+);
+        settings.Columns.Add(
+    column =>
+    {
+        column.FieldName = "IsRoot";
+        column.ColumnType = MVCxTreeListColumnType.CheckBox;
+        column.Width = System.Web.UI.WebControls.Unit.Percentage(10);
+    }
+);
+        settings.Columns.Add(
+    column =>
+    {
+        column.FieldName = "Note";
+        column.Width = System.Web.UI.WebControls.Unit.Percentage(20);
+    }
+);
+
+        settings.SettingsEditing.AddNewNodeRouteValues = new { Controller = "SysConfig", Action = "TreeListPartialAddNew" };
+        settings.SettingsEditing.UpdateNodeRouteValues = new { Controller = "SysConfig", Action = "TreeListPartialUpdate" };
+        settings.SettingsEditing.DeleteNodeRouteValues = new { Controller = "SysConfig", Action = "TreeListPartialDelete" };
+        settings.SettingsEditing.NodeDragDropRouteValues = new { Controller = "SysConfig", Action = "TreeListPartialMove" };
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.NewButton.Visible = true;
+        settings.CommandColumn.DeleteButton.Visible = true;
+        settings.CommandColumn.EditButton.Visible = true;
+
+        settings.SettingsText.CommandNew = "新增";
+        settings.SettingsText.CommandUpdate = "编辑";
+        settings.SettingsText.CommandCancel = "取消";
+        settings.SettingsText.CommandEdit = "编辑";
+        settings.SettingsText.CommandDelete = "删除";
+
+        //settings.SettingsPager.Visible = true;
+        //settings.SettingsSelection.Enabled = true;
+    });
+    if (ViewData["EditError"] != null)
+    {
+        treeList.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@treeList.Bind(Model).GetHtml()

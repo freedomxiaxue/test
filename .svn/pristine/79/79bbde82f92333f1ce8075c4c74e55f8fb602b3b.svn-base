@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "资金账户审核";
+}
+
+
+
+@*<h2>资金账户申请审核</h2>*@
+
+
+@Html.Action("GridView1Partial")
+
+<br />
+
+
+@*@Html.Action("FocusViewEn")*@
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,15 @@
+@using tcpjw3.oa.Controllers;
+
+@Html.DevExpress().HtmlEditor(settings => {
+    settings.Name = "ArticleHE";
+    settings.CallbackRouteValues = new { Controller = "ShowArticle", Action = "ArticleHEPartial" };
+    settings.Width = 500;
+	settings.ToolbarMode = HtmlEditorToolbarMode.Menu;
+
+    	settings.SettingsDialogs.InsertImageDialog.SettingsImageUpload.UploadCallbackRouteValues = new { Controller = "ShowArticle", Action = "ArticleHEPartialImageUpload" };
+    settings.SettingsDialogs.InsertImageDialog.SettingsImageUpload.UploadFolder = ShowArticleControllerArticleHESettings.ImageUploadDirectory;
+	settings.SettingsDialogs.InsertImageDialog.SettingsImageUpload.ValidationSettings.Assign(ShowArticleControllerArticleHESettings.ImageUploadValidationSettings);
+
+
+			settings.SettingsDialogs.InsertImageDialog.SettingsImageSelector.Assign(ShowArticleControllerArticleHESettings.ImageSelectorSettings);
+	}).GetHtml()

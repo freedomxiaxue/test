@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Roles";
+    Layout = "~/Views/Shared/_LightLayout.cshtml";
+}
+
+@*
+
+    *   MVCxGridViewClient 相关配置
+
+*@
+<script type="text/javascript">
+    var roleId = null;
+    function onRoleGridSelectionChanged(s, e) {
+        if (e.visibleIndex >= 0)
+            s.GetRowValues(e.visibleIndex, 'RoleName;RoleId', function (e) {
+                roleId = e[1];
+                $('#labelSelectedRole').text('当前选择的角色： ' + e[0]);
+                $('#canDisplay').show();
+                $('#gridUserInRole').show();
+                GridViewUserInRole.PerformCallback({ roleId: e[1] });
+            })
+    }
+
+    function add2Role() {
+        $.post('/account/adduserstorole', { itemValue: ListBoxSelectedUsers.GetSelectedValues(), roleId: roleId }, function (e) {
+            console.log(e);
+        })
+    }
+</script>
+
+@*
+
+    *   页面内容开始
+
+*@
+<div class="accountHeader">
+    <h2>
+        角色管理
+    </h2>
+    <p>使用下面表单管理角色.</p>
+</div>
+@Html.Action("RoleGridViewRole")
+
+<div class="section">
+    <h2>
+        单击角色来管理用户
+    </h2>
+    <p>
+        <span id="labelSelectedRole">请选择角色</span>
+        <span id="canDisplay" style="display:none;">， 该角色下的用户有：</span>
+    </p>
+</div>
+<div class="section" id="gridUserInRole" style="display:none;">
+    @Html.Action("RoleGridViewUserInRole")
+    <h2>选择要加入角色的用户.</h2>
+    @Html.Action("RoleListBoxSelectedUsers")<br />
+    <input type="button" value="点击设置" onclick="add2Role()" />
+</div>
+
+
+
+
+
+

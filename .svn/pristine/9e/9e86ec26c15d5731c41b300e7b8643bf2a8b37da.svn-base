@@ -1,0 +1,265 @@
+﻿@model tcpjw3.oa.Models.ViewModel.AgencyTrade
+
+    @using (Html.BeginForm())
+    {
+        <span style="font-size: 15px; color: red">请管理员参照样票，完善汇票信息</span><br />
+                                                                    <br />
+
+            @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ticketDiscount.TicketID)*@
+
+            <table class="detailtable" border="1" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td  colspan="4">票据信息</td>
+                </tr>
+                <tr>
+                    <td >承兑行名称：</td>
+                    <td colspan="3">
+                        @Html.DevExpress().TextBoxFor(model => model.ticketDiscount.BankName, settings =>
+                   {
+                       settings.Name = "BankName";
+                       //settings.Width = Unit.Percentage(100);
+                   }).GetHtml()
+                    </td>
+                </tr>
+                <tr>
+                    <td>票面金额：</td>
+                    <td>
+                        @Html.DevExpress().TextBoxFor(model => model.ticketDiscount.TicketPrice, settings =>
+                   {
+                       settings.Name = "TicketPrice";
+                       settings.Properties.DisplayFormatString = "{0:C2}";
+                       settings.Properties.DisplayFormatInEditMode = true;
+                       settings.ReadOnly = true;
+                       //settings.Properties
+
+                   }).GetHtml()
+                    </td>
+                    <td>成交价格：</td>
+                    <td>
+                        @Html.DevExpress().TextBoxFor(model => model.ticketDiscount.BidPrice, settings =>
+                   {
+                       settings.Name = "BidPrice";
+                       settings.Properties.DisplayFormatString = "{0:C2}";
+                       settings.Properties.DisplayFormatInEditMode = true;
+                       settings.ReadOnly = true;
+                       //settings.Properties
+
+                   }).GetHtml()
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>年利率： </td>
+                    <td colspan="3">
+                        <span id="rate">@ViewData["Rate"]</span>%
+                        <input type="button" value="计算" class="btn btn-default" onclick="funCalRate();" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>省份：</td>
+                    <td>
+    @Html.DevExpress().ComboBoxFor(model => model.ticketDiscount.ProvinceID,
+    settings =>
+    {
+        settings.Name = "ProvinceID";
+        settings.Width = 180;
+        settings.SelectedIndex = 0;
+        //settings.Properties.DisplayFormatString = "DXp v. {0}";
+        settings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+        settings.Properties.TextField = "Text";
+        settings.Properties.ValueField = "Value";
+        settings.Properties.ValueType = typeof(string);
+        settings.Properties.ClientSideEvents.SelectedIndexChanged = "OnProChanged";
+
+    }).BindList(ViewData["Pro"]).Bind(Model.ticketDiscount.ProvinceID).GetHtml()
+
+                    </td>
+                    <td>城市：</td>
+                    <td id="city">
+                        @Html.DevExpress().ComboBoxFor(model => model.ticketDiscount.CityID,
+    settings =>
+    {
+        settings.Name = "CityID";
+        settings.Width = 180;
+        //settings.SelectedIndex = 0;
+        //settings.Properties.DisplayFormatString = "DXp v. {0}";
+        settings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+        //settings.Properties.DataSource =  StaticDictiory.GetProDataSource();
+        //settings.Properties.DataSourceID = "cbPro";
+        settings.Properties.TextField = "Text";
+        settings.Properties.ValueField = "Value";
+        settings.Properties.ValueType = typeof(string);
+
+    }).BindList(ViewData["City"]).GetHtml()
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>票据类型：</td>
+                    <td>
+                        @Html.DevExpress().ComboBoxFor(model => model.ticketDiscount.TicketType,
+    settings =>
+    {
+        settings.Name = "TicketType";
+        settings.Width = 180;
+        settings.SelectedIndex = 0;
+        //settings.Properties.DisplayFormatString = "DXp v. {0}";
+        settings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+        settings.Properties.Items.Add("银行承兑汇票电子票", "2");
+        settings.Properties.Items.Add("商业承兑汇票电子票", "8");
+        //settings.Properties.TextField = "Text";
+        //settings.Properties.ValueField = "Value";
+        settings.Properties.ValueType = typeof(int);
+        settings.Properties.ClientSideEvents.SelectedIndexChanged = "OnTicketTypeChanged";
+
+    }).GetHtml()
+                    </td>
+                    <td>银行类型：</td>
+                    <td id="bankType" > 
+                        @Html.DevExpress().ComboBoxFor(model => model.ticketDiscount.BankType,
+    settings =>
+    {
+        settings.Name = "BankType";
+        settings.Width = 180;
+        //settings.SelectedIndex = 0;
+        //settings.Properties.DisplayFormatString = "DXp v. {0}";
+        settings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+        settings.Properties.TextField = "Text";
+        settings.Properties.ValueField = "Value";
+        settings.Properties.ValueType = typeof(int);
+
+    }).BindList(ViewData["Bank"]).GetHtml()
+                    </td>
+                </tr>
+                <tr>
+                    <td>汇票到期日：</td>
+                    <td colspan="3">
+                        @Html.DevExpress().DateEditFor(model => model.ticketDiscount.TicketEndTime, settings =>
+                   {
+                       settings.Name = "TicketEndTime";
+                   }).GetHtml()
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>审核意见</td>
+                    <td colspan="3" style="width:100%;">
+                        @Html.DevExpress().TextBoxFor(model => model.ticketDiscount.AuditNote, settings =>
+                   {
+                       settings.Name = "AuditNote";
+                   }).GetHtml()
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>用户备注</td>
+                    <td colspan="3">
+                        @Html.DevExpress().TextBoxFor(model => model.ticketDiscount.UserNote, settings =>
+                   {
+                       settings.Name = "UserNote";
+                   }).GetHtml()
+                    </td>
+                </tr>
+            </table>
+
+            <table class="detailtable" border="1" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td style="border: 0;">审核信息</td>
+                </tr>
+                <tr>
+                    <td>审核状态</td>
+                    <td colspan="3"> @Html.DevExpress().ComboBoxFor(model => model.ticketDiscount.AuditState,
+    settings =>
+    {
+        settings.Name = "AuditState";
+        settings.Width = 180;
+        settings.SelectedIndex = 0;
+        //settings.Properties.DisplayFormatString = "DXp v. {0}";
+        settings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+        settings.Properties.Items.Add("待审核", "1");
+        settings.Properties.Items.Add("审核通过", "2");
+        settings.Properties.Items.Add("审核不通过", "4");
+        settings.Properties.ValueType = typeof(int);
+
+    }).GetHtml()</td>
+                </tr>
+                <tr>
+                    <td>付款虚拟账号</td>
+                    <td colspan="3"><span id="payAccount">@Model.PayAccount</span> </td>
+                </tr>
+                <tr>
+                    <td>收款虚拟账号</td>
+                    <td colspan="3"> <span id="getAccount">@Model.GetAccount</span> </td>
+                </tr>
+
+                <tr>
+                    <td>操作</td>
+                    <td colspan="3"> 
+                        @*@if (Model.TicketID == 101557)
+                        {
+                            <input type="button" id="btnZjdk" value="资金打款" class="btn btn-default" onclick="" />
+                        }*@
+
+
+                        @if (Model.ticketDiscount.TradeState == 32)
+                        {
+                            if (Model.ticketDiscount.AuditorName == "BBBBBBB")
+                            {
+                                <input type="button" id="btnZjdk" value="资金打款" disabled="disabled" class="btn btn-default" onclick="funOperFund();" />
+                                <input type="button" id="btnJdcj" value="解冻出金" style="display:none;" class="btn btn-default" onclick="funUotGold();" />
+                                <input type="button" id="btnCxye" value="查询账单余额" class="btn btn-default" onclick="funQueryBalance();" />
+                                <input type="button" id="btnGxdd" value="更新订单状态" disabled="disabled" class="btn btn-default" onclick="funUpdateOrder();" />
+                                <input type="button" id="btnSyxs" value="首页显示" class="btn btn-default" onclick="funHomeShow();" />
+                            }
+                           
+                            else
+                            {
+                                <input type="button" id="btnZjdk" value="资金打款" disabled="disabled" class="btn btn-default" onclick="funOperFund();" />
+                                <input type="button" id="btnJdcj" value="解冻出金" style="display:none;" class="btn btn-default" onclick="funUotGold();" />
+                                <input type="button" id="btnCxye" value="查询账单余额" class="btn btn-default" onclick="funQueryBalance();" />
+                                <input type="button" id="btnGxdd" value="更新订单状态" disabled="disabled" class="btn btn-default" onclick="funUpdateOrder();" />
+                                <input type="button" id="btnSyxs" value="首页显示" disabled="disabled" class="btn btn-default" onclick="funHomeShow();" />
+                            }
+                        }
+                        else if (Model.ticketDiscount.AuditorName == "AAAAAAA")
+                        {
+                            <input type="button" id="btnZjdk" value="资金打款" disabled="disabled" class="btn btn-default" onclick="funOperFund();" />
+                                <input type="button" id="btnJdcj" value="解冻出金" style="display:none;" class="btn btn-default" onclick="funUotGold();" />
+                                <input type="button" id="btnCxye" value="查询账单余额" class="btn btn-default" onclick="funQueryBalance();" />
+                                <input type="button" id="btnGxdd" value="更新订单状态" class="btn btn-default" onclick="funUpdateOrder();" />
+                                <input type="button" id="btnSyxs" value="首页显示" disabled="disabled" class="btn btn-default" onclick="funHomeShow();" />
+
+                        }
+                        else
+                        {
+                            <input type="button" id="btnZjdk" value="资金打款" class="btn btn-default" onclick="funOperFund();" />
+                            <input type="button" id="btnJdcj" value="解冻出金" style="display:none;" class="btn btn-default" onclick="funUotGold();" />
+                            <input type="button" id="btnCxye" value="查询账单余额" class="btn btn-default" onclick="funQueryBalance();" />
+                            <input type="button" id="btnGxdd" value="更新订单状态" class="btn btn-default" onclick="funUpdateOrder();" />
+                            <input type="button" id="btnSyxs" value="首页显示" class="btn btn-default" onclick="funHomeShow();" />
+                        }
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>提示信息：</td>
+                    <td colspan="3"><span id="tips"></span></td>
+                 </tr>
+                </table>
+                <input id="PublishTime" type="hidden" value=@Model.ticketDiscount.PublishTime />
+                <input id="TicketID" type="hidden" value=@Model.ticketDiscount.TicketID />
+                <input id="zzmemo" type="hidden" value=@Model.ZzMemo />
+    }
+
+
+
+
+
+ 
+
+
+

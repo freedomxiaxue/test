@@ -1,0 +1,528 @@
+﻿@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+
+}
+<link href="~/Content/styles.css" rel="stylesheet" />
+
+<script type="text/javascript">
+
+    window.mosaicsDrag = function (target) {
+        this.obj = target;
+        this.lastCreatedSquare = null;
+        this._startDrag = false;
+        this.start = { x: 0, y: 0 };
+        this.end = { x: 0, y: 0 };
+        this.squares = [];
+        this.positions = [];
+        this.initialization.apply(this, arguments);
+    }
+
+    mosaicsDrag.prototype.createSquare = function () {
+        var div = document.createElement("div");
+        div.setAttribute("class", "square");
+        return div;
+    }
+
+    mosaicsDrag.prototype.initialization = function () {
+        var that = this;
+        this.obj.onmousedown = function (e) {
+            if (e.which == 1) {
+                var div = that.createSquare();
+                div.style.top = e.offsetY + "px";
+                div.style.left = e.offsetX + "px";
+                that.start = { x: e.offsetX, y: e.offsetY };
+                that._startDrag = true;
+                that.lastCreatedSquare = div;
+                that.obj.appendChild(div);
+            }
+            e.stopPropagation();
+            e.preventDefault();
+        };
+
+        this.obj.onmousemove = function (e) {
+            if (that._startDrag) {
+                var div = that.lastCreatedSquare;
+                div.style.width = (e.offsetX - that.start.x) + "px";
+                div.style.height = (e.offsetY - that.start.y) + "px";
+            }
+            e.stopPropagation();
+            e.preventDefault();
+        };
+
+        this.obj.onmouseup = function (e) {
+            if (e.which == 1) {
+                that._startDrag = false;
+                that.end = { x: e.offsetX, y: e.offsetY }
+                if (Math.abs(that.end.x - that.start.x) <= 5 || Math.abs(that.end.y - that.start.y) <= 5) {
+                    $(that.lastCreatedSquare).remove();
+                    return;
+                }
+                that.squares.push(that.lastCreatedSquare);
+                that.positions.push({ start: that.start, end: that.end });
+            }
+            e.stopPropagation();
+            e.preventDefault();
+        }
+    }
+
+    mosaicsDrag.prototype.revocation = function () {
+        if (this.squares.length > 0 && this.positions.length > 0) {
+            var length = this.squares.length;
+            var div = this.squares.splice(length - 1, 1);
+            $(div).remove();
+            this.positions.splice(length - 1, 1);
+        }
+    }
+</script>
+
+<script type="text/javascript">
+
+        // 正面撤销
+    function faceRevoke() {
+            mosaicsDragFace.revocation();
+        }
+
+        // 正面马赛克
+        function faceMosaic() {
+            //var face = document.getElementById('frameFace'),
+            //           mosaicsDragFace = new mosaicsDrag(face);
+            if (confirm('确定需要马赛克处理？')) {
+                var image = document.getElementById('ticketFace');
+                $.ajax({
+                    type: "POST",
+                    dataType: "JSON",
+                    //contentType: "application/JSON",
+                    url: "/Discount/AjaxDcmosaics",
+                    //url: "/Discount/AjaxDcmosaics?Param=" + JSON.stringify({ url: image.src, rects: mosaicsDragFace.positions }),
+                    data: "Param="+JSON.stringify({ url: image.src, rects: mosaicsDragFace.positions }),
+                    success: function (data) {
+                        var obj = eval(data);
+                        //alert(data.success);
+                        if(data.success)
+                        {
+                            image.src = image.src + '?v=' + new Date();
+                            alert('修改成功。');
+                        }
+                        else
+                        {
+                            alert('修改失败。');
+                        }
+
+                        //image.src = image.src + '?v=' + new Date();
+                        //alert('修改成功。');
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        alert('Request Status: ' + xhr.status + '; Status Text: ' + textStatus + '; Error: ' + errorThrown);
+                    }
+                });
+            }
+        }
+
+        // 正面顺时针旋转
+        function faceClockwise() {
+            if (confirm('确定需要顺时针旋转90°')) {
+                var image = document.getElementById('ticketFace');
+                $.ajax({
+                    type: "POST",
+                    dataType: "JSON",
+                    url: "/Discount/AjaxDcrotate",
+                    data: { url: image.src, degree: 90 },
+                    success: function (data) {
+                        if (data.success) {
+                            image.src = image.src + '?v=' + new Date();
+                            alert('旋转成功。');
+                        }
+                        else {
+                            alert('旋转失败。');
+                        }
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        alert('Request Status: ' + xhr.status + '; Status Text: ' + textStatus + '; Error: ' + errorThrown);
+                    }
+                });
+
+            }
+        }
+
+        // 正面逆时针旋转
+        function faceAnticlockwise() {
+            if (confirm('确定需要逆时针旋转90°')) {
+                var image = document.getElementById('ticketFace');
+                $.ajax({
+                    type: "POST",
+                    dataType: "JSON",
+                    url: "/Discount/AjaxDcrotate",
+                    data: { url: image.src, degree: -90 },
+                    success: function (data) {
+                        if (data.success) {
+                            image.src = image.src + '?v=' + new Date();
+                            alert('旋转成功。');
+                        }
+                        else {
+                            alert('旋转失败。');
+                        }
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        alert('Request Status: ' + xhr.status + '; Status Text: ' + textStatus + '; Error: ' + errorThrown);
+                    }
+                });
+
+            }
+        }
+
+
+
+</script>
+
+<script type="text/javascript">
+
+    function auditSubmit()
+    {
+        var bank = $("#BankName_I").val();//承兑行名称
+        var ticketPrice = $("#TicketPrice_I").val();//票面金额
+        var pro = $("#ProvinceID_I").val();//省份
+        var proV = $("#ProvinceID_VI").val();//省份值
+        //alert(proV);
+        var city = $("#CityID_I").val();//城市
+        var ticketType = $("#TicketType_I").val();//票据类型
+        var bankType = $("#BankType_I").val();//银行类型
+        var pubTime = $("#PublishTime").val();//发布时间
+        var endTime = $("#TicketEndTime_I").val();//到期日
+        var audState = $("#AuditState_I").val();//审核状态
+        var traState = $("#TradeState_I").val();
+
+        if(bank=="")
+        {
+            alert("请填写承兑行名称！");
+            $("#BankName_I").focus();
+            return false;//取消提交
+        }
+
+        if (ticketPrice <= 0)
+        {
+            alert("请正确填写票面金额！");
+            $("#TicketPrice_I").focus();
+            return false;//取消提交
+        }
+        if (pro == "") {
+            alert("请选择省份！");
+            return false;//取消提交
+        }
+        if (city == "") {
+            alert("请选择城市！");
+            return false;//
+        }
+        if (ticketType == "") {
+            alert("请选择票据类型！");
+            return false;//
+        }
+        if (bankType == "") {
+            alert("请选择银行类型！");
+            return false;//
+        }
+        if (endTime == "") {
+            alert("请正确选择到期时间！");
+            return false;//
+        }
+        if (audState == "" || audState == "待审核") {
+            alert("请正确选择审核状态！");
+            return false;//
+        }
+        if (traState == "") {
+            alert("请选择交易状态！");
+            return false;//
+        }
+
+        return true;
+    }
+
+    function OnProChanged(s, e) {
+        //debugger;
+        $.ajax({
+            url: '@Url.Action("AjaxCityCombox", "Discount")',
+            type: "POST",
+            data: { proID: ProvinceID.GetSelectedItem().value },
+            success: function (data) {
+                //debugger;
+                //alert(data);
+                var aa = data;
+                $('#city').html(data);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert('Request Status: ' + xhr.status + '; Status Text: ' + textStatus + '; Error: ' + errorThrown);
+            }
+        });
+    }
+
+    function OnTicketTypeChanged(s, e) {
+        $.ajax({
+            url: '@Url.Action("AjaxBankCombox", "Discount")',
+            type: "POST",
+            data: { ticketType: TicketType.GetSelectedItem().value },
+            success: function (data) {
+                $('#bankType').html(data);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert('Request Status: ' + xhr.status + '; Status Text: ' + textStatus + '; Error: ' + errorThrown);
+            }
+        });
+    }
+</script>
+
+<script type="text/javascript">
+    function onTicketFaceUpload(s, e) {
+        //var aa = e.callbackData;
+        if (e.isValid)
+            $("#ticketFace").attr("src", e.callbackData+'?v='+new Date());
+    }
+
+    function onTicketBackUpload(s, e) {
+        //var aa = e.callbackData;
+        if (e.isValid)
+            $("#ticketBack").attr("src", e.callbackData + '?v=' + new Date());
+    }
+</script>
+
+<script>
+    //资金打款
+    function funOperFund()
+    {
+        var bank = $("#BankName_I").val();//承兑行名称
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "/AgencyTrade/AjaxOperFund",
+            data: {
+                TicketID: $("#TicketID").val(),
+                FollowID:$("#zzmemo").val()
+            },
+            success: function (data) {
+                if (data.success)
+                {
+                    $("#tips").html(data.Tips);
+                    $("#btnZjdk").attr("disabled", true);
+                }
+                else
+                {
+                    $("#tips").html(data.Tips);
+                    if (data.Status==1)
+                    {
+                        $("#btnZjdk").attr("disabled", true);
+                        $("#btnCxye").attr("disabled", true);
+                        $("#btnJdcj").show();
+                    }
+                    else if (data.Status == 2)
+                       {
+                        $("#btnZjdk").attr("disabled", true);
+                    }
+                    else
+                    {
+                    }
+                }
+                //alert(data.success);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert('Request Status: ' + xhr.status + '; Status Text: ' + textStatus + '; Error: ' + errorThrown);
+            }
+        });
+    }
+    //解冻出金
+    function funUotGold() {
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "/AgencyTrade/AjaxUotGold",
+            data: {
+                TicketID: $("#TicketID").val(),
+                FollowID: $("#zzmemo").val()
+            },
+            success: function (data) {
+                $("#tips").html(data.Tips);
+                if (data.Status==1)
+                {
+                    $("#btnZjdk").attr("disabled", true);
+                    $("#btnJdcj").attr("disabled", true);
+                }
+                else if (data.Status == 1)
+                {
+                    $("#btnZjdk").attr("disabled", true);
+                    $("#btnCxye").attr("disabled", false);
+                    $("#btnJdcj").attr("disabled", true);
+                    $("#btnJdcj").show();
+                }
+                else
+                {
+
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert('Request Status: ' + xhr.status + '; Status Text: ' + textStatus + '; Error: ' + errorThrown);
+            }
+        });
+    }
+    //查询账单余额
+    function funQueryBalance() {
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "/AgencyTrade/AjaxQueryBalance",
+            data: {
+                TicketID: $("#TicketID").val(),
+                FollowID: $("#zzmemo").val()
+            },
+            success: function (data) {
+                $("#tips").html(data.Tips);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert('Request Status: ' + xhr.status + '; Status Text: ' + textStatus + '; Error: ' + errorThrown);
+            }
+        });
+    }
+    //更新订单状态
+    function funUpdateOrder() {
+        var ticket = $("#TicketID").val();
+        var bank = $("#BankName_I").val();//承兑行名称
+        var pro = $("#ProvinceID_I").val();//省份
+        var proV = $("#ProvinceID_VI").val();//省份值
+        var city = $("#CityID_I").val();//城市
+        var cityV = $("#CityID_VI").val();//城市值
+        var ticketType = $("#TicketType_I").val();//票据类型
+        var ticketTypeV = $("#TicketType_VI").val();//票据类型值
+        var bankType = $("#BankType_I").val();//银行类型
+        var bankTypeV = $("#BankType_VI").val();//银行类型值
+        var pubTime = $("#PublishTime").val();//发布时间
+        var endTime = $("#TicketEndTime_I").val();//到期日
+        var audState = $("#AuditState_I").val();//审核状态
+        var audStateV = $("#AuditState_VI").val();//审核状态值
+        var auditNote = $("#AuditNote_I").val();//审核意见
+        var userNote = $("#UserNote_I").val();//用户备注
+
+        //alert(bank);
+        //alert(ticketTypeV);
+        //alert(endTime);
+        //return;
+
+        if (bank == "") {
+            alert("请填写承兑行名称！");
+            $("#BankName_I").focus();
+            return ;
+        }
+        if (pro == "") {
+            alert("请选择省份！");
+            return ;
+        }
+        if (city == "") {
+            alert("请选择城市！");
+            return ;//
+        }
+        if (ticketType == "") {
+            alert("请选择票据类型！");
+            return ;//
+        }
+        if (bankType == "") {
+            alert("请选择银行类型！");
+            return ;//
+        }
+        if (endTime == ""||(pubTime >= endTime)) {
+            alert("请正确选择到期时间！");
+            return ;//
+        }
+        if (audState == "" || audState == "待审核") {
+            alert("请正确选择审核状态！");
+            return ;//
+        }
+
+
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "/AgencyTrade/AjaxUpdateOrder",
+            data: {
+                TicketID: $("#TicketID").val(),
+                FollowID: $("#zzmemo").val(),
+                BankName: bank,
+                ProvinceID: proV,
+                CityID: cityV,
+                TicketType: ticketTypeV,
+                BankTyp: bankTypeV,
+                TicketEndTime: endTime,
+                AuditState: audStateV,
+                AuditNote: auditNote,
+                UserNote: userNote
+            },
+            success: function (data) {
+                $("#tips").html(data.Tips);
+
+                if (data.Status == 1) {
+                    $("#btnZjdk").attr("disabled", true);
+                    $("#btnGxdd").attr("disabled", true);
+                }
+                else {
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert('Request Status: ' + xhr.status + '; Status Text: ' + textStatus + '; Error: ' + errorThrown);
+            }
+        });
+    }
+    //首页显示
+    function funHomeShow() {
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "/AgencyTrade/AjaxHomeShow",
+            data: {
+                TicketID: $("#TicketID").val(),
+                FollowID: $("#zzmemo").val()
+            },
+            success: function (data) {
+                $("#tips").html(data.Tips);
+                if (data.Status == 1) {
+                    $("#btnSyxs").attr("disabled", true);
+                }
+                else {
+                }
+                //alert(data.success);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert('Request Status: ' + xhr.status + '; Status Text: ' + textStatus + '; Error: ' + errorThrown);
+            }
+        });
+    }
+    //计算年利率
+    function funCalRate() {
+        var endTime = $("#TicketEndTime_I").val();//到期日
+        var pubTime = $("#PublishTime").val();//发布时间
+        if (endTime == "" || (pubTime >= endTime)) {
+            alert("请正确选择到期时间！");
+            return;//
+        }
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "/AgencyTrade/AjaxCalRate",
+            data: {
+                TicketID: $("#TicketID").val(),
+                TicketEndTime: endTime
+            },
+            success: function (data) {
+                if(data.Status==1)
+                    {
+                $("#rate").html(data.Tips);
+                }
+                else
+                {
+                    $("#tips").html(data.Tips);
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert('Request Status: ' + xhr.status + '; Status Text: ' + textStatus + '; Error: ' + errorThrown);
+            }
+        });
+    }
+</script>
+
+@Html.Action("SpliterMaster")
+
+
+

@@ -1,0 +1,329 @@
+﻿@model tcpjw3.oa.Models.NewsList
+
+@{
+    ViewBag.Title = "新闻编辑";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>新闻编辑</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.Nclassid)
+        
+        <div class="form-group">
+            @Html.DevExpress().Label(
+                settings =>
+                {
+                    settings.ControlStyle.CssClass = "control-label col-md-2";
+                    settings.Text = "栏目名称：";
+                    settings.AssociatedControlName = "Classname";
+                }
+            ).GetHtml()
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Classname, new { htmlAttributes = new { @class = "form-control" } })*@
+                @*@Html.DropDownListFor(model=>model.Classname,ViewData["AGetClassName"] as IEnumerable<SelectListItem>)
+                @Html.ValidationMessageFor(model => model.Classname, "", new { @class = "text-danger" })*@
+                
+                @Html.DevExpress().ComboBox(settings => {
+                   settings.Name = "Value";
+                   settings.Properties.TextField = "Text";
+                   settings.Properties.ValueField = "Value";
+                   settings.Properties.ValueType = typeof(string);
+                }).BindList(tcpjw3.oa.ViewModels.VMShowArticles.AGetClassName()).Bind(Model.Classname).GetHtml()
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.DevExpress().Label(
+                settings =>
+                {
+                    settings.ControlStyle.CssClass = "control-label col-md-2";
+                    settings.Text = "标题：";
+                    settings.AssociatedControlName = "Title";
+                }
+            ).GetHtml()
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.DevExpress().Label(
+                settings =>
+                {
+                    settings.ControlStyle.CssClass = "control-label col-md-2";
+                    settings.Text = "图片标题：";
+                    settings.AssociatedControlName = "Imgtitleurl";
+                }
+            ).GetHtml()
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Imgtitleurl, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Imgtitleurl, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+             @Html.DevExpress().Label(
+                settings =>
+                {
+                    settings.ControlStyle.CssClass = "control-label col-md-2";
+                    settings.Text = "Seo标题：";
+                    settings.AssociatedControlName = "Seo_title";
+                }
+            ).GetHtml()
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Seo_title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Seo_title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.DevExpress().Label(
+                settings =>
+                {
+                    settings.ControlStyle.CssClass = "control-label col-md-2";
+                    settings.Text = "Seo关键字：";
+                    settings.AssociatedControlName = "Seo_keywords";
+                }
+            ).GetHtml()
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Seo_keywords, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Seo_keywords, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.DevExpress().Label(
+                settings =>
+                {
+                    settings.ControlStyle.CssClass = "control-label col-md-2";
+                    settings.Text = "Seo描述：";
+                    settings.AssociatedControlName = "Seo_desciption";
+                }
+            ).GetHtml()
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Seo_desciption, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Seo_desciption, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.DevExpress().Label(
+                settings =>
+                {
+                    settings.ControlStyle.CssClass = "control-label col-md-2";
+                    settings.Text = "来源：";
+                    settings.AssociatedControlName = "Fromnew";
+                }
+            ).GetHtml()
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Fromnew, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Fromnew, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.DevExpress().Label(
+                settings =>
+                {
+                    settings.ControlStyle.CssClass = "control-label col-md-2";
+                    settings.Text = "编辑人：";
+                    settings.AssociatedControlName = "Editor";
+                }
+            ).GetHtml()
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Editor, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Editor, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.DevExpress().Label(
+                settings =>
+                {
+                    settings.ControlStyle.CssClass = "control-label col-md-2";
+                    settings.Text = "简介：";
+                    settings.AssociatedControlName = "NDescription";
+                }
+            ).GetHtml()
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NDescription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.DevExpress().Label(
+                settings =>
+                {
+                    settings.ControlStyle.CssClass = "control-label col-md-2";
+                    settings.Text = "内容：";
+                    settings.AssociatedControlName = "Content";
+                }
+            ).GetHtml()
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })*@
+
+                @*@using (Html.BeginForm())
+                {*@
+                    @Html.Action("ArticleHEPartial")
+                @*}*@
+
+
+                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.DevExpress().Label(
+                settings =>
+                {
+                    settings.ControlStyle.CssClass = "control-label col-md-2";
+                    settings.Text = "发布时间：";
+                    settings.AssociatedControlName = "Publishtime";
+                }
+            ).GetHtml()
+            <div class="col-md-10" style="width: 250px; margin-right: 50px">
+                @Html.DevExpress().DateEdit(settings=> {
+                   settings.Name = "apublishtime";
+                   settings.Properties.NullText =string.Format("{0:d}", Model.Publishtime);
+                   settings.Properties.EditFormat = EditFormat.Custom;
+                   settings.Properties.EditFormatString = "yyyy/MM/dd";
+                   settings.Width = Unit.Percentage(100);
+               }).GetHtml()
+                @*@Html.ValidationMessageFor(model => model.Publishtime, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.DevExpress().Label(
+                settings =>
+                {
+                    settings.ControlStyle.CssClass = "control-label col-md-2";
+                    settings.Text = "是否幻灯：";
+                    settings.AssociatedControlName = "Isslide";
+                }
+            ).GetHtml()
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Isslide, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.CheckBox("Isslide")
+                @Html.ValidationMessageFor(model => model.Isslide, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Slideurl, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Slideurl, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Slideurl, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.DevExpress().Label(
+                settings =>
+                {
+                    settings.ControlStyle.CssClass = "control-label col-md-2";
+                    settings.Text = "是否推荐：";
+                    settings.AssociatedControlName = "Isrecommend";
+                }
+            ).GetHtml()
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Isrecommend, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.CheckBox("Isrecommend")
+                @Html.ValidationMessageFor(model => model.Isrecommend, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.DevExpress().Label(
+                settings =>
+                {
+                    settings.ControlStyle.CssClass = "control-label col-md-2";
+                    settings.Text = "是否置顶：";
+                    settings.AssociatedControlName = "Istop";
+                }
+            ).GetHtml()
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Istop, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.CheckBox("Istop")
+                @Html.ValidationMessageFor(model => model.Istop, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.DevExpress().Label(
+                settings =>
+                {
+                    settings.ControlStyle.CssClass = "control-label col-md-2";
+                    settings.Text = "是否上色：";
+                    settings.AssociatedControlName = "Iscolor";
+                }
+            ).GetHtml()
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Iscolor, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.CheckBox("Iscolor")
+                @Html.ValidationMessageFor(model => model.Iscolor, "", new { @class = "text-danger" })
+            </div>
+        </div>        
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Edittime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Edittime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Edittime, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Publisher, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Publisher, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Publisher, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.AuditState, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AuditState, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AuditState, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Auditor, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Auditor, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Auditor, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.AuditTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AuditTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AuditTime, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

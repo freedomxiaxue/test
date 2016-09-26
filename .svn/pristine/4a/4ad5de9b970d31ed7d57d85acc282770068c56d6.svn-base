@@ -1,0 +1,10 @@
+@{ Layout = "~/Views/Shared/_MainLayout.cshtml"; }
+@model tcpjw3.oa.Models.OutlookScheduler
+
+@section Left {
+    <div class="navcontainer">
+        @Html.DevExpress().DateNavigator(tcpjw3.oa.Controllers.SchedulerHelper.Settings).Bind(Model.Appointments, Model.Resources).GetHtml()
+    </div>
+}
+
+@Html.Partial("SchedulerPartial", Model)

@@ -1,0 +1,304 @@
+﻿@model tcpjw3.oa.Models.TicketDiscount
+
+    @using (Html.BeginForm("IndexPartialUpdate", "Discount",FormMethod.Post,new { @id="disForm"}))
+    {
+        @*@Html.AntiForgeryToken()*@
+        <span style="font-size: 15px; color: red">请管理员参照样票，完善汇票信息</span><br />
+                                                                    <br />
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.TicketID)
+
+            <table class="detailtable" border="1" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td style="border: 0;">票据信息</td>
+                </tr>
+                <tr>
+                    <td>承兑行名称：</td>
+                    <td>
+                        @Html.DevExpress().TextBoxFor(model => model.BankName, settings =>
+                   {
+                       settings.Name = "BankName";
+                   }).GetHtml()
+                    </td>
+                    <td>票面金额：</td>
+                    <td>
+                        @*@Html.EditorFor(model => model.TicketPrice, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TicketPrice, "", new { @class = "text-danger" })*@
+
+                        @Html.DevExpress().TextBoxFor(model=>model.TicketPrice, settings => {
+                       settings.Name = "TicketPrice";
+                       settings.Properties.DisplayFormatString = "{0:C2}";
+                       settings.Properties.DisplayFormatInEditMode = true;
+                       //settings.Properties
+
+                   }).GetHtml()
+
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>省份：</td>
+                    <td>
+    @Html.DevExpress().ComboBoxFor(model => model.ProvinceID,
+    settings =>
+    {
+        settings.Name = "ProvinceID";
+        settings.Width = 180;
+        //settings.SelectedIndex = 0;
+        //settings.Properties.DisplayFormatString = "DXp v. {0}";
+        settings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+        //settings.Properties.DataSource =  StaticDictiory.GetProDataSource();
+        //settings.Properties.DataSourceID = "cbPro";
+        settings.Properties.TextField = "Text";
+        settings.Properties.ValueField = "Value";
+        settings.Properties.ValueType = typeof(string);
+        settings.Properties.ClientSideEvents.SelectedIndexChanged = "OnProChanged";
+
+    }).BindList(ViewData["Pro"]).Bind(Model.ProvinceID).GetHtml()
+
+                    </td>
+                    <td>城市：</td>
+                    <td id="city">
+                        @Html.DevExpress().ComboBoxFor(model => model.CityID,
+    settings =>
+    {
+        settings.Name = "CityID";
+        settings.Width = 180;
+        //settings.SelectedIndex = 0;
+        //settings.Properties.DisplayFormatString = "DXp v. {0}";
+        settings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+        //settings.Properties.DataSource =  StaticDictiory.GetProDataSource();
+        //settings.Properties.DataSourceID = "cbPro";
+        settings.Properties.TextField = "Text";
+        settings.Properties.ValueField = "Value";
+        settings.Properties.ValueType = typeof(string);
+
+    }).BindList(ViewData["City"]).GetHtml()
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>票据类型：</td>
+                    <td>
+                        @Html.DevExpress().ComboBoxFor(model => model.TicketType,
+    settings =>
+    {
+        settings.Name = "TicketType";
+        settings.Width = 180;
+        settings.SelectedIndex = 0;
+        //settings.Properties.DisplayFormatString = "DXp v. {0}";
+        settings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+        settings.Properties.Items.Add("银行承兑汇票电子票", "2");
+        settings.Properties.Items.Add("商业承兑汇票电子票", "8");
+        //settings.Properties.TextField = "Text";
+        //settings.Properties.ValueField = "Value";
+        settings.Properties.ValueType = typeof(int);
+        settings.Properties.ClientSideEvents.SelectedIndexChanged = "OnTicketTypeChanged";
+
+    }).GetHtml()
+                    </td>
+                    <td>银行类型：</td>
+                    <td id="bankType"> @Html.DevExpress().ComboBoxFor(model => model.BankType,
+    settings =>
+    {
+        settings.Name = "BankType";
+        settings.Width = 180;
+        //settings.SelectedIndex = 0;
+        //settings.Properties.DisplayFormatString = "DXp v. {0}";
+        settings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+        settings.Properties.TextField = "Text";
+        settings.Properties.ValueField = "Value";
+        settings.Properties.ValueType = typeof(int);
+
+    }).BindList(ViewData["Bank"]).GetHtml()</td>
+                </tr>
+                <tr>
+                    <td>汇票到期日：</td>
+                    <td>
+                        @Html.DevExpress().DateEditFor(model => model.TicketEndTime, settings =>
+                   {
+                       settings.Name = "TicketEndTime";
+                   }).GetHtml()
+
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>审核意见</td>
+                    <td colspan="3" style="width:100%;">
+                        @Html.DevExpress().TextBoxFor(model => model.AuditNote, settings =>
+                   {
+                       settings.Name = "AuditNote";
+                   }).GetHtml()
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>用户备注</td>
+                    <td colspan="3">
+                        @Html.DevExpress().TextBoxFor(model => model.UserNote, settings =>
+                   {
+                       settings.Name = "UserNote";
+                   }).GetHtml()
+                    </td>
+                </tr>
+            </table>
+
+            <table class="detailtable" border="1" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td style="border: 0;">推送信息</td>
+                </tr>
+                <tr>
+                    <td>推送设置</td>
+                    <td colspan="3">
+                @Html.DevExpress().CheckBox(settings =>
+                {
+                settings.Name = "dASPxCheckBoxPush";
+                //settings.Checked = true;
+                settings.Text = "推送给已认证机构";
+                }).GetHtml()
+
+                    </td>
+                </tr>
+
+            </table>
+            <table class="detailtable" border="1" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td style="border: 0;">审核信息</td>
+                </tr>
+                <tr>
+                    <td>审核状态</td>
+                    <td> @Html.DevExpress().ComboBoxFor(model => model.AuditState,
+    settings =>
+    {
+        settings.Name = "AuditState";
+        settings.Width = 180;
+        settings.SelectedIndex = 0;
+        //settings.Properties.DisplayFormatString = "DXp v. {0}";
+        settings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+        settings.Properties.Items.Add("待审核", "1");
+        settings.Properties.Items.Add("审核通过", "2");
+        settings.Properties.Items.Add("审核不通过", "4");
+        settings.Properties.ValueType = typeof(int);
+
+    }).GetHtml()</td>
+                    <td>交易类型</td>
+                    <td> @Html.DevExpress().ComboBoxFor(model => model.TradeState,
+    settings =>
+    {
+        settings.Name = "TradeState";
+        settings.Width = 180;
+        settings.SelectedIndex = 0;
+        //settings.Properties.DisplayFormatString = "DXp v. {0}";
+        settings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+        settings.Properties.Items.Add("预约竞价", "128");
+        settings.Properties.Items.Add("竞价中", "1");
+        settings.Properties.Items.Add("发起要约", "256");
+        settings.Properties.Items.Add("确认要约", "2");
+        settings.Properties.Items.Add("支付冻结", "4");
+        settings.Properties.Items.Add("持票人背书", "8");
+        settings.Properties.Items.Add("签收解冻", "16");
+        settings.Properties.Items.Add("交易完成", "32");
+        settings.Properties.Items.Add("中止交易", "64");
+        settings.Properties.ValueType = typeof(int);
+
+    }).GetHtml()</td>
+                </tr>
+                <tr>
+                    <td>预约竞价时间</td>
+                    <td> @Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "cbDate";
+        settings.Width = 180;
+        settings.SelectedIndex = 0;
+        //settings.Properties.DisplayFormatString = "DXp v. {0}";
+        settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+        settings.Properties.Items.Add("00:00", "0");
+        settings.Properties.Items.Add("00:30", "1");
+        settings.Properties.Items.Add("01:00", "2");
+        settings.Properties.Items.Add("01:30", "3");
+        settings.Properties.Items.Add("02:00", "4");
+        settings.Properties.Items.Add("02:30", "5");
+        settings.Properties.Items.Add("03:00", "6");
+        settings.Properties.Items.Add("03:30", "7");
+        settings.Properties.Items.Add("04:00", "8");
+        settings.Properties.Items.Add("04:30", "9");
+        settings.Properties.Items.Add("05:00", "10");
+        settings.Properties.Items.Add("05:30", "11");
+        settings.Properties.Items.Add("06:00", "12");
+        settings.Properties.Items.Add("06:30", "13");
+        settings.Properties.Items.Add("07:00", "14");
+        settings.Properties.Items.Add("07:30", "15");
+        settings.Properties.Items.Add("08:00", "16");
+        settings.Properties.Items.Add("08:30", "17");
+        settings.Properties.Items.Add("09:00", "18");
+        settings.Properties.Items.Add("09:30", "19");
+        settings.Properties.Items.Add("10:00", "20");
+        settings.Properties.Items.Add("10:30", "21");
+        settings.Properties.Items.Add("11:00", "22");
+        settings.Properties.Items.Add("11:30", "23");
+        settings.Properties.Items.Add("12:00", "24");
+        settings.Properties.Items.Add("12:30", "25");
+        settings.Properties.Items.Add("13:00", "26");
+        settings.Properties.Items.Add("13:30", "27");
+        settings.Properties.Items.Add("14:00", "28");
+        settings.Properties.Items.Add("14:30", "29");
+        settings.Properties.Items.Add("15:00", "30");
+        settings.Properties.Items.Add("15:30", "31");
+        settings.Properties.Items.Add("16:00", "32");
+        settings.Properties.Items.Add("16:30", "33");
+        settings.Properties.Items.Add("17:00", "34");
+        settings.Properties.Items.Add("17:30", "35");
+        settings.Properties.Items.Add("18:00", "36");
+        settings.Properties.Items.Add("18:30", "37");
+        settings.Properties.Items.Add("19:00", "38");
+        settings.Properties.Items.Add("19:30", "39");
+        settings.Properties.Items.Add("20:00", "40");
+        settings.Properties.Items.Add("20:30", "41");
+        settings.Properties.Items.Add("21:00", "42");
+        settings.Properties.Items.Add("21:30", "43");
+        settings.Properties.Items.Add("22:00", "44");
+        settings.Properties.Items.Add("22:30", "45");
+        settings.Properties.Items.Add("23:00", "46");
+        settings.Properties.Items.Add("23:30", "47");
+        settings.Properties.ValueType = typeof(int);
+        settings.Properties.ClientSideEvents.Init = "function(s, e){ var date = new Date(),h = date.getHours(),m = date.getMinutes(); value = h*2 + (m > 30 ? 2:1); if (value >= 47) value = 0; s.SetValue(value);}";
+
+    }).GetHtml() </td>
+                    <td>选择客服</td>
+                    <td> @Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "comboCs";
+        settings.Width = 180;
+        settings.SelectedIndex = 0;
+        settings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+        settings.Properties.ValueType = typeof(string);
+
+    }).GetHtml()</td>
+                </tr>
+
+                <tr>
+                    <td>操作</td>
+                    <td colspan="3"> <input type="submit" value="确认" class="btn btn-default" onclick="return auditSubmit();" /></td>
+                </tr>
+                </table>
+                <input id="PublishTime" type="hidden" value=@Model.PublishTime />
+
+
+    }
+
+
+
+
+
+ 
+
+
+

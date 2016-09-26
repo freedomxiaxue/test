@@ -1,0 +1,72 @@
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "gridView";
+        settings.CallbackRouteValues = new { Controller = "QuoteStatistic", Action = "IndexPartial" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "QuoteStatistic", Action = "IndexPartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "QuoteStatistic", Action = "IndexPartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "QuoteStatistic", Action = "IndexPartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        //settings.Width=Unit.;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = false;
+        settings.CommandColumn.ShowEditButton = true;
+        //settings.CommandColumn.Width= System.Web.UI.WebControls.Unit.Percentage(20);
+
+        settings.KeyFieldName = "ID";
+
+        //settings.SettingsPager.Visible = true;
+        //settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.SettingsText.CommandNew = "新增";
+        settings.SettingsText.CommandUpdate = "编辑";
+        settings.SettingsText.CommandCancel = "取消";
+        settings.SettingsText.CommandEdit = "编辑";
+
+        settings.SettingsBehavior.AllowFocusedRow = true;
+        settings.SettingsBehavior.AutoExpandAllGroups = true;
+        settings.SettingsBehavior.ColumnResizeMode = ColumnResizeMode.Control;
+
+        //settings.SettingsPager.PageSize = 50;
+        settings.Settings.ShowFilterRow = true;
+
+        settings.SettingsPager.PageSize = 50;
+        settings.Height = System.Web.UI.WebControls.Unit.Percentage(100);
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+        settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
+        settings.Settings.VerticalScrollBarMode = ScrollBarMode.Visible;
+
+        settings.Settings.VerticalScrollableHeight = 0;
+        settings.Settings.GridLines = System.Web.UI.WebControls.GridLines.Vertical;
+
+
+        //settings.Columns.Add("ID", "ID");
+        settings.Columns.Add("GG", "国股月利率（?‰）", MVCxGridViewColumnType.TextBox).Width= System.Web.UI.WebControls.Unit.Percentage(20);
+        settings.Columns.Add("DS", "城商月利率（?‰）", MVCxGridViewColumnType.TextBox).Width = System.Web.UI.WebControls.Unit.Percentage(20);
+        settings.Columns.Add("QT", "农商月利率（?‰）", MVCxGridViewColumnType.TextBox).Width = System.Web.UI.WebControls.Unit.Percentage(20);
+        //settings.Columns.Add("Date", "日期", MVCxGridViewColumnType.DateEdit).PropertiesEdit.DisplayFormatString="d";
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Date";
+            column.Caption = "日期";
+            column.ColumnType = MVCxGridViewColumnType.DateEdit;
+            column.PropertiesEdit.DisplayFormatString = "d";
+            column.Width = System.Web.UI.WebControls.Unit.Percentage(20);
+        });
+
+
+    });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

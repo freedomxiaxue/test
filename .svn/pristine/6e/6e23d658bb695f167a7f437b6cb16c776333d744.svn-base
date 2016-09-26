@@ -1,0 +1,9 @@
+@Html.DevExpress().ListBox(settings =>
+{
+    settings.Name = "ListBoxSelectedUsers";
+    settings.CallbackRouteValues = new { Controller = "Account", Action = "RoleListBoxSelectedUsers" };
+    settings.Properties.CallbackPageSize = 50;
+    settings.Properties.ValueField = "UserId";
+    settings.Properties.TextField = "UserName";
+    settings.Properties.SelectionMode = ListEditSelectionMode.CheckColumn;
+}).BindList(Model).GetHtml()

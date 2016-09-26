@@ -1,0 +1,61 @@
+﻿
+/*base*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,table,th,td,iframe{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+img{border:0;vertical-align:top; display:block;}
+a:hover img{filter:alpha(opacity=85); -moz-opacity:0.85; background:#fff; opacity:0.85;}
+option{padding-left:5px;*padding:0;}
+li{list-style:none;}
+cite,code,caption,em,i{font-style:normal;font-weight:normal;}
+q:before,q:after{content:'';}
+a{color:#196dc4;text-decoration:none;}
+a:hover,a:focus{ text-decoration:underline; }
+/*a:visited{color:#800080;}*/
+a:active,a:focus{outline:none;}
+/*a:active{ color:#fff !important;background-color:#00457d !important;}*/
+input,textarea,select{*font-size:100%;vertical-align:middle}
+h2,h3{font-size:14px}
+textarea{resize:none;overflow-x:hidden;overflow-y:auto}
+.clearfix:after{content:".";display:block;height:0;visibility:hidden;clear:both; zoom:1;}
+.clearfix{zoom:1;}
+
+.fl{float: left;}
+.fr{float: right;}
+
+/*margin*/
+.mt20{margin-top: 20px !important;}
+.mb20{margin-bottom: 20px !important;}
+.mt40{margin-top: 40px !important;}
+
+.cl{clear: both;}
+
+/*login*/
+.login_bg{background: url(images/login_bg1.jpg) repeat;}
+.login_top{background:#016ab4 url(images/login_bg.jpg) no-repeat center center; height: 341px; display: block; width: 100%;}
+.login_content{ width: 600px; margin:0 auto ; text-align:center;}
+.login_content .stroke{font-size:75px; font-family:'Microsoft YaHei'; color: #e5eaf0;	text-shadow: -1px -1px #7a7a7a; margin-top:100px; letter-spacing:10px;}
+.login_input{ border: 1px solid #c8c8c8; height: 50px;line-height: 50px; width: 412px;background: #fff; border-radius:4px; margin-top: 20px;}
+.login_input .uesname{background: url(images/login_pic1.png) no-repeat; width: 24px; height: 25px; display: block; margin: 12px 12px 0 12px; border-right: 1px solid #c8c8c8; padding-right: 10px;}
+.login_input .password{background: url(images/login_pic2.png) no-repeat; width: 24px; height: 25px; display: block; margin: 12px 12px 0 12px; border-right: 1px solid #c8c8c8; padding-right: 10px;}
+.login_input input{border: none; padding: 0 5px; font-size: 18px; height: 50px; line-height: 50px; color: #c8c8c8;}
+.login_but{background: #0e88dd; height: 50px;line-height: 50px; text-align: center; color: #fff;letter-spacing: 12px;width:414px; font-size:20px; border: none; border-radius:3px; cursor: pointer;}
+.login_but:hover{filter: alpha(opacity=80);-moz-opacity: 0.8;opacity: 0.8;}
+.label{font-size: 15px; color: #6c5d5d; vertical-align: -2px;}
+.login_warn{border: 1px solid #f8891c; height: 30px;line-height:30px; width: 412px;background: #faeee2; border-radius:4px; margin-top:0px;}
+.warnbox{background: url(images/login_pic3.png) no-repeat 10px 7px; display: block; color: #F8891C; padding-left:40px; font-size: 14px;}
+.login_panel{width:600px;text-align:center; font-family:'Microsoft YaHei'; margin-top:100px;}
+.login_panel img{ width:60px; margin-left:275px; }
+.login_panel input{-webkit-border-radius:5px;margin-top:10px;font-family:'Microsoft YaHei'; text-align:center; font-size:15px; padding:5px; height:25px; border:1px solid gray; -moz-border-radius:5px; -ms-border-radius:5px; -o-border-radius:5px; border-radius:5px;}
+.login_panel input::-ms-input-placeholder{text-align:center;}
+.login_panel input::-webkit-input-placeholder{text-align:center;}
+.mp_box{width: 500px; margin: 0 auto;}
+.mp_box h2{ border-bottom: 1px solid #c8c8c8; height: 50px; line-height: 50px; font-size: 22px; font-weight: normal; margin-top: 25px; color: #666;}
+.mp_table{margin-top: 30px; }
+.mp_table th{text-align: right;font-size: 16px;padding: 10px 5px; font-weight: normal;color: #666;}
+.mp_table td{padding: 10px 5px;}
+.mp_table td .mp_input{color: #666; height: 40px; line-height: 40px; border: 1px solid #c8c8c8; padding: 0px 5px; border-radius: 3px; width: 96%;}
+.mp_but{background: #0e88dd; height: 40px;line-height: 40px; text-align: center; color: #fff;letter-spacing: 5px;width:99%; font-size:16px; border: none; border-radius:3px; cursor: pointer;}
+.mp_but:hover{filter: alpha(opacity=80);-moz-opacity: 0.8;opacity: 0.8;}
+
+
+

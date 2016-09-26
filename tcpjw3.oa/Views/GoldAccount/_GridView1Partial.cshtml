@@ -1,0 +1,60 @@
+@{
+    var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "GridView1";
+        settings.CallbackRouteValues = new { Controller = "GoldAccount", Action = "GridView1Partial" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "GoldAccount", Action = "GridView1PartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "GoldAccount", Action = "GridView1PartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "GoldAccount", Action = "GridView1PartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+        
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+        settings.Width = Unit.Percentage(100);
+        settings.KeyFieldName = "ID";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.Columns.Add(colum=> {
+            colum.FieldName = "ID";
+            colum.Visible = false;
+        });
+        settings.Columns.Add(colum=> {
+            colum.Caption = "用户编号";
+            colum.FieldName = "Userid";
+        });
+        settings.Columns.Add(colum=> {
+            colum.Caption = "出金收款账号";
+            colum.FieldName = "CjrecvAccNo";
+        });
+        settings.Columns.Add(colum=> {
+            colum.Caption = "出金收款账号名称";
+            colum.FieldName = "RecvAccNm";
+        });
+        settings.Columns.Add(colum=> {
+            colum.Caption = "中信标识（√:他行）";
+            colum.FieldName = "CjsameBank";
+            colum.ColumnType = MVCxGridViewColumnType.CheckBox;
+            colum.Width = 100;
+        });
+        settings.Columns.Add(colum=> {
+            colum.Caption = "出金账户银联号";
+            colum.FieldName = "CjrecvTgfi";
+        });
+        settings.Columns.Add(colum=> {
+            colum.Caption = "收款账户开户行";
+            colum.FieldName = "CjrecvBankNm";
+        });
+    });
+    if (ViewData["EditError"] != null){
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

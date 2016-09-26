@@ -1,0 +1,22 @@
+﻿@*@model IEnumerable<tcpjw3.oa.Models.ClientUser>*@
+@{
+    ViewBag.Title = "UDetailPageControl";
+}
+
+@Html.DevExpress().PageControl(settings =>
+{
+    settings.Name = "UPageControl" + ViewData["key"];
+    settings.Width = Unit.Percentage(100);
+    settings.CallbackRouteValues = new { Controller = "ShowUser", Action = "UPageControlPartial", key = ViewData["key"] };
+    settings.TabPages.Add("编辑用户信息").SetContent(() =>
+    {
+        //ViewContext.Writer.Write("Page content 0");
+        Html.RenderAction("UProductsGridViewPartial", new { key =Convert.ToInt32(ViewData["key"]) });
+    });
+    settings.TabPages.Add("编辑管理员备注").SetContent(() =>
+    {
+        ViewContext.Writer.Write("Page content 1");
+    });
+
+
+}).GetHtml()

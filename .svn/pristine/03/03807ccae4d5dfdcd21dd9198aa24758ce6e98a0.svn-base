@@ -1,0 +1,127 @@
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "SUserList";
+        settings.CallbackRouteValues = new { Controller = "ShowUser", Action = "SUserListPartial" };
+        settings.Width = Unit.Percentage(100);
+        //settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        // settings.CommandColumn.Visible = true;
+        // settings.CommandColumn.ShowEditButton = true;
+
+        settings.KeyFieldName = "ID";
+
+        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowFilterRow = true;
+        //settings.SettingsBehavior.AllowFixedGroups = true;
+        settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+        settings.Settings.VerticalScrollableHeight = 400;
+        settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
+
+        settings.SettingsDetail.ShowDetailRow = true;
+        //settings.SettingsPager.PageSize = 7;
+
+        settings.ControlStyle.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+        settings.ControlStyle.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+        settings.Columns.Add(column => { column.FieldName = "ID"; column.Caption = "用户编号"; });
+        settings.Columns.Add(column => { column.FieldName = "FullName"; column.Caption = "企业名称"; });
+        settings.Columns.Add(column => { column.FieldName = "Name"; column.Caption = "企业简称"; });
+        settings.Columns.Add(column => { column.FieldName = "Phone"; column.Caption = "手机号码"; });
+        settings.Columns.Add(column => { column.FieldName = "Telephone"; column.Caption = "座机号码"; });
+        //settings.Columns.Add(column => { column.FieldName = "Email"; column.Caption = "邮箱"; });
+        settings.Columns.Add(column => { column.FieldName = "ProvinceID"; column.Caption = "省份"; });
+        settings.Columns.Add(column => { column.FieldName = "CityID"; column.Caption = "城市"; });
+        //settings.Columns.Add("DistrictID");
+        settings.Columns.Add(column => { column.FieldName = "NameOfPIC"; column.Caption = "负责人"; });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "ALTakerLevel"; column.Caption = "持票企业等级";
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            Dictionary<string, string> tdic = new Dictionary<string, string>();
+            tdic.Add("", "");
+            tdic.Add("0", "C1");
+            tdic.Add("1", "C2");
+            tdic.Add("2", "C3");
+            tdic.Add("3", "C4");
+            comboBoxProperties.DataSource = tdic;
+            comboBoxProperties.ValueField = "Key";
+            comboBoxProperties.TextField = "Value";
+            comboBoxProperties.DropDownStyle = DropDownStyle.DropDown;
+
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "ALBearerLevel"; column.Caption = "贴现机构等级";
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var bcomboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            Dictionary<string, string> bdic = new Dictionary<string, string>();
+            bdic.Add("", "");
+            bdic.Add("0", "V1");
+            bdic.Add("1", "V2");
+            bdic.Add("2", "V3");
+            bdic.Add("3", "V4");
+            bcomboBoxProperties.DataSource = bdic;
+            bcomboBoxProperties.ValueField = "Key";
+            bcomboBoxProperties.TextField = "Value";
+            bcomboBoxProperties.DropDownStyle = DropDownStyle.DropDown;
+        });
+        settings.Columns.Add(column => { column.FieldName = "ALAdvantage"; column.Caption = "贴现用户优势"; });
+        settings.Columns.Add(column => { column.FieldName = "LastLoginTime"; column.Caption = "最后登录时间"; column.ColumnType = MVCxGridViewColumnType.DateEdit; });
+        settings.Columns.Add(column => { column.FieldName = "RegisterTime"; column.Caption = "注册时间"; column.GroupIndex = 0; column.SortDescending(); });
+        settings.Columns.Add(column => { column.FieldName = "RegisterTime"; column.Caption = "注册时间"; column.ColumnType = MVCxGridViewColumnType.DateEdit; });
+        settings.Columns.Add(column => { column.FieldName = "ALNote"; column.Caption = "管理员备注"; });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "IsAgency"; column.Caption = "是否中介";
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var bcomboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            Dictionary<string, string> adic = new Dictionary<string, string>();
+            adic.Add("", "");
+            adic.Add("0", "否");
+            adic.Add("1", "是");
+            bcomboBoxProperties.DataSource = adic;
+            bcomboBoxProperties.ValueField = "Key";
+            bcomboBoxProperties.TextField = "Value";
+            bcomboBoxProperties.DropDownStyle = DropDownStyle.DropDown;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Identor"; column.Caption = "认定的贴现机构";
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var bcomboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            Dictionary<string, string> ddic = new Dictionary<string, string>();
+            ddic.Add("", "");
+            ddic.Add("0", "否");
+            ddic.Add("1", "是");
+            bcomboBoxProperties.DataSource = ddic;
+            bcomboBoxProperties.ValueField = "Key";
+            bcomboBoxProperties.TextField = "Value";
+            bcomboBoxProperties.DropDownStyle = DropDownStyle.DropDown;
+        });
+        //settings.Columns.Add("UserName");
+        //settings.Columns.Add("Avatar");
+        //settings.Columns.Add("RegisterType");
+        //settings.Columns.Add("Address");
+        //settings.Columns.Add("PositionOfPIC");
+        //settings.Columns.Add("QQOfPIC");
+        //settings.Columns.Add("Zip");
+        //settings.Columns.Add("Fax");
+
+        settings.PreRender = (s, e) =>
+        {
+            MVCxGridView mvcgrid = s as MVCxGridView;
+            if (mvcgrid != null)
+                mvcgrid.ExpandAll();
+        };
+        settings.SetDetailRowTemplateContent(c =>
+        {
+            ViewContext.Writer.Write("<div style='padding: 3px 3px 2px 3px;'>");
+            Html.RenderAction("UPageControlPartial", new { key = c.KeyValue });
+            ViewContext.Writer.Write("</div>");
+
+        });
+    });
+
+}
+@grid.Bind(Model).GetHtml()
+<script>    $(function () { devEvent.setFullScreen(SUserList) })</script>

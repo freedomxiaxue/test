@@ -1,0 +1,51 @@
+﻿@model tcpjw3.oa.Models.TicketDiscount
+
+
+<table class="detailtable" border="1" cellpadding="0" cellspacing="0">
+    <tr>
+        <td>汇票正面</td>
+        <td>
+            <div id="frameFace" class="frame"  >
+                <img id="ticketFace" src=@Html.DisplayFor(model => model.TicketFaceImg )  />
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>操作</td>
+        <td>
+            <input type="button" id="revoFace" value="撤销" onclick="faceRevoke();" />
+            <input id="moFace" type="button" value="马赛克处理" onclick="faceMosaic();"  />
+            <input id="roFace90" type="button" value="顺时针旋转90°" onclick="faceClockwise();" />
+            <input id="roFace_90" type="button" value="逆时针旋转90°" onclick="faceAnticlockwise();" />
+
+        </td>
+    </tr>
+    <tr>
+        <td>上传处理后的图片</td>
+        <td>
+
+            @using (Html.BeginForm("TicketFaceUpload", "Discount", FormMethod.Post))
+            {
+                @Html.DevExpress().UploadControl(settings =>
+           {
+               settings.Name = "TicketFace";
+               settings.CallbackRouteValues = new { Controller = "Discount", Action = "TicketFaceUpload",ticketID=Model.TicketID };
+
+               settings.ShowUploadButton = true;
+               settings.ShowProgressPanel = true;
+               settings.BrowseButton.Text = "选择票面";
+               settings.UploadButton.Text = "上传";
+
+               settings.ClientSideEvents.FileUploadComplete = "onTicketFaceUpload";
+
+               settings.ValidationSettings.Assign(tcpjw3.oa.Controllers.DiscountControllerTicketFaceSettings.UploadValidationSettings);
+           }).GetHtml()
+
+                <input id="Hidden1" type="hidden" value=@Model.TicketID />
+
+            }
+
+
+        </td>
+    </tr>
+</table>
